@@ -65,7 +65,9 @@
                         <p class="cursor-pointer transition hover:underline w-fit">Forgot password?</p>
                     </div>
 
-                    <Button @onClick="handelLogin" :loading="loading" class="min-w-full flex justify-center items-center mt-4">Login</Button>
+                    <div class="flex justify-center items-center mt-4">
+                        <Button @onClick="handelLogin" :loading="loading" class="w-[70%]">Login</Button>
+                    </div>
 
                     <div class="flex justify-center items-center mt-3">
                         <div class="flex-1 h-[1px] bg-primary-200/50"></div>

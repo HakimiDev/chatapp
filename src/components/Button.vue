@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="w-full">
         <button
             @click="$emit('onClick')"
-            class="w-[70%] p-2 px-4 bg-primary-300 rounded text-md font-bold transition duration-700" :class="!loading ? 'hover:bg-primary-500' : ''">
+            class="w-full p-2 px-4 bg-primary-300 rounded text-md font-bold transition duration-700" :class="!loading ? 'hover:bg-primary-500' : ''">
             <div class="w-full flex justify-center items-center">
                  <slot v-if="!loading" />
                  <div v-if="loading" class="loader"></div>
