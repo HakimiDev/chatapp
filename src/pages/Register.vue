@@ -71,7 +71,8 @@
                         </template>
                     </InputField>
 
-                    <Button @onClick="handelSignup" :loading="loading" class="min-w-full flex justify-center items-center mt-4">Sign Up</Button>
+                    <Button @onClick="handelSignup" :loading="loading"
+                        class="min-w-full flex justify-center items-center mt-4">Sign Up</Button>
 
                     <div class="flex justify-center items-center mt-3">
                         <div class="flex-1 h-[1px] bg-primary-200/50"></div>
@@ -80,9 +81,7 @@
                     </div>
 
                     <p class="p-1 px-4 text-gray-400 text-center text-lg">Have an account? <a
-                            class="cursor-pointer font-semibold transition hover:underline" href="/#login">Signin
-                            instead</a></p>
-
+                            class="cursor-pointer font-semibold transition hover:underline" href="/#login">Signin</a></p>
                 </form>
 
             </main>

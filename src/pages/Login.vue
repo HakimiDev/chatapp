@@ -70,8 +70,7 @@
                     </div>
 
                     <p class="p-1 px-4 text-gray-400 text-center text-lg">Don't have an account? <a
-                            class="cursor-pointer font-semibold transition hover:underline" href="/#register">Signup
-                            instead</a></p>
+                            class="cursor-pointer font-semibold transition hover:underline" href="/#register">Signup</a></p>
 
                 </form>
             </main>
