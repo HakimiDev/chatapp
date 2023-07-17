@@ -30,9 +30,9 @@
                             </div>
                         </template>
                     </InputField>
-                    <div @click="toggleUsingField" class="text-gray-400 ms-2 cursor-pointer transition hover:underline">
-                        <p v-if="usingEmail">Using username</p>
-                        <p v-else>Using email</p>
+                    <div @click="toggleUsingField" class="text-gray-400 ms-2">
+                        <p v-if="usingEmail" class="cursor-pointer transition hover:underline w-fit">Using username</p>
+                        <p v-else class="cursor-pointer transition hover:underline w-fit">Using email</p>
                     </div>
 
                     <InputField name="password" :modelValue="inputsData.password" :onChange="onInputChange"
@@ -60,6 +60,10 @@
                             </svg>
                         </span>
                     </InputField>
+
+                    <div class="text-gray-400 ms-2">
+                        <p class="cursor-pointer transition hover:underline w-fit">Forgot password?</p>
+                    </div>
 
                     <Button @onClick="handelLogin" :loading="loading" class="min-w-full flex justify-center items-center mt-4">Login</Button>
 
