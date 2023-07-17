@@ -1,5 +1,8 @@
 <template>
-    <h2>Test</h2>
+    <component :is="currentView"></component>
 </template>
 
-<script setup></script>
+<script setup>
+    import { currentView } from './router/index';
+
+</script>
