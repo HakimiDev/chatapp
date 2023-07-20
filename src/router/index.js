@@ -4,11 +4,13 @@ import Home from '../pages/Home.vue';
 import Register from '../pages/Register.vue';
 import Login from '../pages/Login.vue';
 import NotFound from '../pages/NotFound.vue';
+import Chat from '../pages/Chat.vue';
 
 const routes = {
     '/': Home,
     'register': Register,
-    'login': Login
+    'login': Login,
+    'chat': Chat
 };
 
 function initPath (path) {

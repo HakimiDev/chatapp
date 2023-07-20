@@ -8,7 +8,7 @@
                 <form class="w-[92%]" onsubmit="return false;">
                     <InputField v-if="!usingEmail" name="username" :modelValue="inputsData.username"
                         :onChange="onInputChange" type="text" placeholder="Your username" class="mt-2" required="true">
-                        <template v-slot:icon>
+                        <template v-slot:before>
                             <div class="border-e-[1px] border-primary-500 me-2 pe-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                     stroke="currentColor" class="w-6 h-6">
@@ -20,7 +20,7 @@
                     </InputField>
                     <InputField v-else name="email" :modelValue="inputsData.email" :onChange="onInputChange" type="email"
                         placeholder="Your email" class="mt-2" required="true">
-                        <template v-slot:icon>
+                        <template v-slot:before>
                             <div class="border-e-[1px] border-primary-500 me-2 pe-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                     stroke="currentColor" class="w-6 h-6">
@@ -37,7 +37,7 @@
 
                     <InputField name="password" :modelValue="inputsData.password" :onChange="onInputChange"
                         :type="showPassword ? 'text' : 'password'" placeholder="Your password" class="mt-2" required="true">
-                        <template v-slot:icon>
+                        <template v-slot:before>
                             <div class="border-e-[1px] border-primary-500 me-2 pe-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                     stroke="currentColor" class="w-6 h-6">
@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="flex justify-center items-center mt-4">
-                        <Button @onClick="handelLogin" :loading="loading" class="w-[70%]">Login</Button>
+                        <Button @onClick="handelLogin" :loading="loading" class="w-[75%]">Login</Button>
                     </div>
 
                     <div class="flex justify-center items-center mt-3">
