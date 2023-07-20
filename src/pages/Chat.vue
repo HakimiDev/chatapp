@@ -166,7 +166,7 @@ const msgsRef = ref(null);
 const handelSend = () => {
     messages.value.push({
         content: inputsData.value.message,
-        byMe: false
+        byMe: true
     });
     inputsData.value.message = '';
 };
