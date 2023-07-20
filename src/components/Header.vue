@@ -1,6 +1,6 @@
 <template>
-    <MinMune class="border-2" type="1" :show="showSettings" :toggleShow="toogleShowSettings" />
-    <header class="w-full fixed top-0 flex items-center">
+    <MinMune type="1" :show="showSettings" :toggleShow="toogleShowSettings" />
+    <header class="w-full fixed top-0 flex items-center z-10">
         <div class="min-w-full bg-primary-100 flex justify-between items-center p-4 rounded-b">
             <div class="text-xl max-xs:text-lg font-bold">
                 <h2>Chat<span class=" text-orange-300">App</span></h2>
