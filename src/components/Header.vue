@@ -1,11 +1,11 @@
 <template>
-    <MinMune type="1" :show="showSettings" :toggleShow="toogleShowSettings" />
-    <header class="w-full fixed top-0 flex items-center z-10">
+    <MinMune class="border-2" type="1" :show="showSettings" :toggleShow="toogleShowSettings" />
+    <header class="w-full fixed top-0 flex items-center">
         <div class="min-w-full bg-primary-100 flex justify-between items-center p-4 rounded-b">
             <div class="text-xl max-xs:text-lg font-bold">
                 <h2>Chat<span class=" text-orange-300">App</span></h2>
             </div>
-            <div @click="toogleShowSettings" class="cursor-pointer transition duration-500 hover:-rotate-180">
+            <div :class="'border-2'" @click="toogleShowSettings" class="cursor-pointer transition duration-500 hover:-rotate-180">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
