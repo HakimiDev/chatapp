@@ -171,7 +171,7 @@ const handelSend = () => {
     inputsData.value.message = '';
     setTimeout(() => {
         msgsRef.value.scrollIntoView({ behavior: 'smooth' });
-    }, 50)
+    }, 50);
     
 };
 
