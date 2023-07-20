@@ -1,11 +1,11 @@
 <template>
-    <MinMune type="1" :show="showSettings" :toggleShow="toogleShowSettings" />
+    <MinMune type="1" :show="showMinMune" :toggleShow="toogleShowMinMune" />
     <header class="w-full fixed top-0 flex items-center z-10">
         <div class="min-w-full bg-primary-100 flex justify-between items-center p-4 rounded-b">
             <div class="text-xl max-xs:text-lg font-bold">
                 <h2>Chat<span class=" text-orange-300">App</span></h2>
             </div>
-            <div @click="toogleShowSettings" class="cursor-pointer transition duration-500 hover:-rotate-180">
+            <div @click="toogleShowMinMune" class="cursor-pointer transition duration-500 hover:-rotate-180">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -21,7 +21,7 @@ import { ref } from 'vue';
 
 import MinMune from '../components/MinMune.vue';
 
-const showSettings = ref(false);
-const toogleShowSettings = () => showSettings.value = !showSettings.value;
+const showMinMune = ref(false);
+const toogleShowMinMune = () => showMinMune.value = !showMinMune.value;
 
 </script>

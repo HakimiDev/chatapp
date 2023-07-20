@@ -1,45 +1,57 @@
 <template>
-    <MinMune type="2" :show="showSettings" :toggleShow="toogleShowSettings" />
+    <MinMune type="2" :show="showMinMune" :toggleShow="toogleShowMinMune" />
     <header class="w-full fixed top-0 flex items-center z-10">
-        <div class="min-w-full bg-primary-100 flex justify-between items-center p-2 rounded-b-2xl">
-            <div class="text-xl max-xs:text-lg flex flex-row">
-                <div class="h-full flex items-center">
-                    <span class="me-2 cursor-pointer">
+        <div class="min-w-full bg-primary-100 flex flex-row items-center p-2 rounded-b">
+            <div>
+                <div class="flex flex-row items-center">
+                    <div class="pe-2 cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-7 h-7">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                         </svg>
-                    </span>
+                    </div>
                     <UserAvatar :user="user" />
                 </div>
-                <div class="w-full p-2 text-lg max-xs:text-xs flex flex-col flex-1">
-                    <div class="w-full flex justify-between">
-                        <h2 class="font-semibold">{{ user.username }}</h2>
-                    </div>
-                    <div class=" text-gray-400 ms-1">
-                        <h3>typing...</h3>
-                    </div>
+            </div>
+
+            <div class="flex-1 ps-4">
+                <div class="flex flex-col leading-5">
+                    <h2 class="text-lg">{{ user.username }}</h2>
+                    <h3 class="text-gray-400 ms-1">typing...</h3>
                 </div>
             </div>
-            <div @click="toogleShowSettings" class="cursor-pointer transition duration-500 hover:-rotate-180">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                </svg>
+
+            <div>
+                <div @click="toogleShowMinMune" class="cursor-pointer transition duration-500 hover:-rotate-180">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+                    </svg>
+                </div>
             </div>
         </div>
     </header>
 
     <main class="mt-24 text-md min-w-full min-h-full">
-        <ul class="p-2 pb-20 min-w-full min-h-full overflow-auto block" ref="msgsRef">
+        <ul class="p-2 pb-20 min-w-full min-h-full overflow-auto block">
             <li v-for="(message, index) in displayMessages" :key="index"
                 :class="message.byMe ? 'justify-end' : 'justify-start'" class="min-w-full h-fit flex py-1">
-                <div :class="[message.byMe ? 'bg-primary-300' : 'bg-primary-100', message.byMe && ((messages[index - 1] && !messages[index - 1].byMe) || !messages[index - 1]) ? 'rounded-b-full rounded-tl-full' : 'me-1', !message.byMe && ((messages[index - 1] && messages[index - 1].byMe) || !messages[index - 1]) ? ' rounded-b-full rounded-tr-full' : 'ms-1']"
+                <div :class="[message.byMe ? 'bg-primary-300' : 'bg-primary-100', message.byMe && ((messages[index - 1] && !messages[index - 1].byMe) || !messages[index - 1]) ? 'rounded-b-3xl rounded-tl-3xl' : 'me-1', !message.byMe && ((messages[index - 1] && messages[index - 1].byMe) || !messages[index - 1]) ? ' rounded-b-3xl rounded-tr-3xl' : 'ms-1']"
                     class="max-w-[65%] h-fit p-2 break-words rounded-xl">
                     <p v-html="message.content"></p>
+                    <div class="flex flex-row justify-end items-center text-gray-300">
+                        <p>{{ message.time }}</p>
+                        <span class="flex flex-row text-blue-500" v-if="message.byMe">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.3"
+                                stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                        </span>
+                    </div>
                 </div>
             </li>
+            <div ref="msgsRef"></div>
         </ul>
     </main>
 
@@ -78,29 +90,30 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
+import { selectedUser } from '../stores/chat';
 
 import MinMune from '../components/MinMune.vue';
 import UserAvatar from '../components/UserAvatar.vue';
 import Layout from '../components/Layout.vue';
 import InputField from '../components/InputField.vue';
-import Button from '../components/Button.vue';
 
-const showSettings = ref(false);
-const toogleShowSettings = () => showSettings.value = !showSettings.value;
+const showMinMune = ref(false);
+const toogleShowMinMune = () => showMinMune.value = !showMinMune.value;
 
 const inputsData = ref({
     message: ''
 });
 
-const user = ref({
-    username: 'Isaac Qadri',
-    avatarUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRij6dtiHizH96qpCOe8WeXXP3yLyQJkPdGVg&usqp=CAU',
-    lastSeen: 'yesterday',
-    lastMessage: 'كيفك ياب؟',
-    isOnline: true,
-    newMessages: 100
-});
+onMounted(() => {
+    if (!selectedUser.value) return window.location.hash = '#';
+})
+
+const user = ref(selectedUser.value || {});
+
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 const messages = ref([
     {
@@ -142,6 +155,9 @@ const displayMessages = computed(() => messages.value.map((e) => {
     e.content = e.content.replace(/\*([^*]+)\*/g, (e) => `<span class="font-bold">${e.substring(1, e.length - 1)}</span>`);
     e.content = e.content.replace(/~([^~]+~)/g, (e) => `<span class="line-through">${e.substring(1, e.length - 1)}</span>`);
     e.content = e.content.replace(/`([^`]+`)/g, (e) => `<span class="bg-black text-black hover:bg-transparent hover:text-primary-200">${e.substring(1, e.length - 1)}</span>`);
+    if (!e.time) {
+        e.time = `${getRandomNumber(1, 12)}:${getRandomNumber(1, 59)} ${(Math.random() * 10) > 5 ? 'am' : 'pm'}`;
+    }
     return e;
 }));
 
@@ -153,7 +169,6 @@ const handelSend = () => {
         byMe: false
     });
     inputsData.value.message = '';
-    msgsRef.value.scrollTop = msgsRef.value.scrollHeigh
 };
 
 const handelKeyDown = (e) => {
@@ -164,6 +179,7 @@ const handelKeyDown = (e) => {
 const handelKeyUp = (e) => {
     if (e.shiftKey) return;
     inputsData.value.message = '';
+    msgsRef.value.scrollIntoView({ behavior: 'smooth' });
 };
 
 </script>
