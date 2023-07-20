@@ -55,8 +55,8 @@
         </ul>
     </main>
 
-    <footer class="min-w-full fixed bottom-0">
-        <Layout class="rounded-t p-2">
+    <footer class="min-w-full bg-primary-100 fixed bottom-0 z-10">
+        <Layout class="rounded-t">
             <div class="flex flex-row justify-between items-center text-xl">
                 <span class="cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -169,6 +169,7 @@ const handelSend = () => {
         byMe: true
     });
     inputsData.value.message = '';
+    msgsRef.value.scrollIntoView({ behavior: 'smooth' });
 };
 
 const handelKeyDown = (e) => {
@@ -179,7 +180,6 @@ const handelKeyDown = (e) => {
 const handelKeyUp = (e) => {
     if (e.shiftKey) return;
     inputsData.value.message = '';
-    msgsRef.value.scrollIntoView({ behavior: 'smooth' });
 };
 
 </script>
