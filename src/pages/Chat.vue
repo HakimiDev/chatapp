@@ -169,7 +169,10 @@ const handelSend = () => {
         byMe: true
     });
     inputsData.value.message = '';
-    msgsRef.value.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+        msgsRef.value.scrollIntoView({ behavior: 'smooth' });
+    }, 50)
+    
 };
 
 const handelKeyDown = (e) => {
