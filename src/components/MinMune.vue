@@ -1,5 +1,5 @@
 <template>
-    <div @touchstart.self="toggleShow" @pointerdown.self="toggleShow" :class="show ? 'top-0' : 'top-[-200%]'"
+    <div @click.self="toggleShow" :class="show ? 'top-0' : 'top-[-200%]'"
         class="overflow-hidden fixed top-0 z-20 h-screen w-full flex justify-end">
         <div :class="show ? 'top-0 mt-14' : 'top-[-100%]'"
             class=" bg-primary-300 h-fit rounded-xl transition-start duration-300">

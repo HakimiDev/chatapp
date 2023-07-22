@@ -101,7 +101,7 @@ import Layout from '../components/Layout.vue';
 import InputField from '../components/InputField.vue';
 
 const showMinMune = ref(false);
-const toogleShowMinMune = () => showMinMune.value = !showMinMune.value;
+const toogleShowMinMune = (value) => (typeof value == "boolean") ? showMinMune.value = value : showMinMune.value = !showMinMune.value;
 
 const inputsData = ref({
     message: '',
