@@ -3,7 +3,7 @@
     <header class="w-full fixed top-0 flex items-center z-10">
         <div class="min-w-full bg-primary-100 flex justify-between items-center p-4 rounded-b">
             <div class="text-xl max-xs:text-lg font-bold">
-                <h2>Chat<span class=" text-orange-600">App</span></h2>
+                <h2>Hush<span class=" text-orange-400">Chat</span></h2>
             </div>
             <div @click="toogleShowMinMune(true)" class="cursor-pointer rounded-full p-1 transition duration-500 hover:bg-secondary-50">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
