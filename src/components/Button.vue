@@ -2,7 +2,7 @@
     <div>
         <button
             @click="$emit('onClick')"
-            class="w-full p-2 px-4 bg-primary-300 rounded text-md font-bold transition duration-700" :class="[!loading ? 'hover:bg-primary-500' : '', className]">
+            class="w-full p-2 px-4 bg-secondary-300 rounded text-md font-bold transition duration-700" :class="[!loading ? 'hover:bg-secondary-400' : '', className]">
             <div class="w-full flex justify-center items-center">
                  <slot v-if="!loading" />
                  <div v-if="loading" class="loader"></div>

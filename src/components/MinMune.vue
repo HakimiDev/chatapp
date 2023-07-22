@@ -1,26 +1,26 @@
 <template>
-    <div @click.self="toggleShow" :class="show ? 'top-0' : 'top-[-200%]'"
+    <div @touchstart.self="toggleShow" @click.self="toggleShow" :class="show ? 'top-0' : 'top-[-200%]'"
         class="overflow-hidden fixed top-0 z-20 h-screen w-full flex justify-end">
         <div :class="show ? 'top-0 mt-14' : 'top-[-100%]'"
-            class=" bg-primary-400 h-fit rounded-xl transition-start duration-300">
+            class=" bg-primary-300 h-fit rounded-xl transition-start duration-300">
             <div class="w-full h-full p-3">
                 <ul v-if="type == 1">
-                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-primary-500">New group</li>
-                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-primary-500">New broadcast</li>
-                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-primary-500">Linked devices</li>
-                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-primary-500">Settings</li>
+                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-secondary-50">New group</li>
+                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-secondary-50">New broadcast</li>
+                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-secondary-50">Linked devices</li>
+                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-secondary-50">Settings</li>
                 </ul>
                 <ul v-else-if="type == 2">
-                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-primary-500">View contact</li>
-                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-primary-500">Media, links, and
+                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-secondary-50">View contact</li>
+                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-secondary-50">Media, links, and
                         docs</li>
-                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-primary-500">Search</li>
-                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-primary-500">Mute notification
+                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-secondary-50">Search</li>
+                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-secondary-50">Mute notification
                     </li>
-                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-primary-500">Disappearing
+                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-secondary-50">Disappearing
                         messages</li>
-                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-primary-500">Wallpaper</li>
-                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-primary-500 flex flex-row justify-between items-center">
+                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-secondary-50">Wallpaper</li>
+                    <li class="p-2 cursor-pointer rounded transition duration-300 hover:bg-secondary-50 flex flex-row justify-between items-center">
                         <span>More</span>
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

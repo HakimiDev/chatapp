@@ -3,14 +3,17 @@
     <Fap />
     <main class="mt-16">
         <section>
-            <ul class="p-2">
+            <ul v-if="users.length" class="p-2">
                 <UserCard v-for="(user, index) in users" :key="index" :user="user" />
             </ul>
+            <div class="min-h-screen min-w-full flex justify-center items-center text-2xl font-semibold" v-else>
+                <p>You don't have freinds ):</p>
+            </div>
         </section>
     </main>
     <footer class="border-t-[1px] min-w-full mt-2 p-4 pb-24 text-gray-400">
         <div class="text-md max-xs:text-xs">
-            <h2 class="text-center">Your personal messages are <span class="text-secondary-200 cursor-pointer transition duration-300 hover:underline">end-to-end-encrypted</span></h2>
+            <h2 class="text-center">Your personal messages are <span class="text-secondary-100 cursor-pointer transition duration-300 hover:underline">end-to-end-encrypted</span></h2>
         </div>
     </footer>
 </template>
