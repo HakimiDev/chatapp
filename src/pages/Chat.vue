@@ -37,15 +37,15 @@
             </div>
         </header>
 
-        <main class="mt-20 text-md min-w-full min-h-full">
-            <ul class="p-2 min-w-full min-h-full overflow-auto block">
+        <main class="mt-16 text-md">
+            <ul class="p-2 min-w-full min-h-full">
                 <Message v-for="(message, index) in displayMessages" :key="index" :messages="messages" :message="message"
                     :index="index" />
                 <div ref="msgsRef"></div>
             </ul>
         </main>
 
-        <footer class="min-w-full min-h-full sticky bottom-0 z-10">
+        <footer class="min-w-full h-fit sticky bottom-0 z-10 bg-primary-100">
             <Layout class="rounded-t">
                 <div class="flex flex-row justify-between items-center text-xl">
                     <div @click="toogleShowEmojiPicker"
