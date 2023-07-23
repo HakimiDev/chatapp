@@ -2,8 +2,8 @@
     <li @click="handleClick(user)" class="min-w-full flex flex-row p-2 rounded cursor-pointer transition duration-150 hover:bg-secondary-50">
         <UserAvatar :user="user" />
         <div class="w-full p-2 text-lg max-xs:text-xs flex flex-col flex-1">
-            <div class="w-full flex justify-between">
-                <h2 class="font-semibold">{{ user.username }}</h2>
+            <div class="max-w-full flex justify-between overflow-hidden">
+                <h2 class="font-semibold overflow-hidden">{{ user.username.substring(0, 20) }}</h2>
                 <h3 :class="user.newMessages > 0 ? 'text-secondary-100' : 'text-gray-400'">{{ user.lastSeen }}</h3>
             </div>
             <div class="w-full ps-2 flex flex-row justify-between items-center overflow-hidden">

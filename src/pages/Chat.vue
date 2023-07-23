@@ -21,7 +21,7 @@
 
                 <div class="flex-1 ps-4">
                     <div class="flex flex-col leading-5">
-                        <h2 class="text-lg font-semibold">{{ user.username }}</h2>
+                        <h2 class="text-lg max-xs:text-sm font-semibold">{{ (typeof user.username == "string") ? user.username.substring(0, 18) : '' }}</h2>
                         <h3 class="text-gray-400 ms-1">typing...</h3>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
             </div>
         </header>
 
-        <main class="mt-16 text-md min-w-full min-h-full">
+        <main class="mt-20 text-md min-w-full min-h-full">
             <ul class="p-2 min-w-full min-h-full overflow-auto block">
                 <Message v-for="(message, index) in displayMessages" :key="index" :messages="messages" :message="message"
                     :index="index" />
@@ -45,7 +45,7 @@
             </ul>
         </main>
 
-        <footer class="min-w-full min-h-fit sticky bottom-0 z-10">
+        <footer class="min-w-full min-h-full sticky bottom-0 z-10">
             <Layout class="rounded-t">
                 <div class="flex flex-row justify-between items-center text-xl">
                     <div @click="toogleShowEmojiPicker"
