@@ -110,7 +110,7 @@ const toogleShowEmojiPicker = (value) => {
     if (!showEmojiPicker.value) msgField.value.focus();
     setTimeout(() => {
         msgsRef.value.scrollIntoView({ behavior: 'smooth' });
-    }, 50);
+    }, 150);
 };
 
 const inputsData = ref({
@@ -204,7 +204,7 @@ const handelSend = () => {
     msgField.value.focus();
     setTimeout(() => {
         msgsRef.value.scrollIntoView({ behavior: 'smooth' });
-    }, 50);
+    }, 150);
 };
 
 const appendEmoji = (emoji) => {
