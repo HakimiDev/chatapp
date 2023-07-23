@@ -37,22 +37,8 @@
 
     <main class="mt-20 text-md min-w-full min-h-full">
         <ul class="p-2 pb-20 min-w-full min-h-full overflow-auto block">
-            <li v-for="(message, index) in displayMessages" :key="index"
-                :class="message.byMe ? 'justify-end' : 'justify-start'" class="min-w-full h-fit flex py-1">
-                <div :class="[message.byMe ? ' bg-secondary-200' : 'bg-primary-300', message.byMe && ((messages[index - 1] && !messages[index - 1].byMe) || !messages[index - 1]) ? 'rounded-b-3xl rounded-tl-3xl' : 'me-1', !message.byMe && ((messages[index - 1] && messages[index - 1].byMe) || !messages[index - 1]) ? ' rounded-b-3xl rounded-tr-3xl' : 'ms-1']"
-                    class="max-w-[65%] h-fit p-2 break-words rounded-xl">
-                    <p v-html="message.content"></p>
-                    <div class="flex flex-row justify-end items-center text-gray-400">
-                        <p>{{ message.time }}</p>
-                        <span class="flex flex-row text-blue-500" v-if="message.byMe">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.3"
-                                stroke="currentColor" class="w-5 h-5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                            </svg>
-                        </span>
-                    </div>
-                </div>
-            </li>
+            <Message v-for="(message, index) in displayMessages" :key="index" :messages="messages" :message="message"
+                :index="index" />
             <div ref="msgsRef"></div>
         </ul>
     </main>
@@ -78,7 +64,8 @@
                 <textarea ref="msgField" v-model="inputsData.message" id="" cols="2" rows="1"
                     class="w-full bg-transparent outline-none p-2 resize-none" placeholder="Message"
                     @keydown.enter="handelKeyDown" @keyup.enter="handelKeyUp"></textarea>
-                <div class="cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50" @click="handelSend">
+                <div class="cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50"
+                    @click="handelSend">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -92,13 +79,14 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue';
+import { computed, nextTick, onMounted, ref } from 'vue';
 import { selectedUser } from '../stores/chat';
 
 import MinMune from '../components/MinMune.vue';
 import UserAvatar from '../components/UserAvatar.vue';
 import Layout from '../components/Layout.vue';
 import InputField from '../components/InputField.vue';
+import Message from '../components/Message.vue';
 
 const showMinMune = ref(false);
 const toogleShowMinMune = (value) => (typeof value == "boolean") ? showMinMune.value = value : showMinMune.value = !showMinMune.value;
@@ -110,6 +98,7 @@ const inputsData = ref({
 
 onMounted(() => {
     if (!selectedUser.value) return window.location.hash = '#';
+    msgsRef.value.scrollIntoView({ behavior: 'smooth' });
 });
 
 const user = ref(selectedUser.value || {});
@@ -177,8 +166,7 @@ const handelSend = () => {
     msgField.value.focus();
     setTimeout(() => {
         msgsRef.value.scrollIntoView({ behavior: 'smooth' });
-    }, 50);
-
+      }, 0);
 };
 
 const handelKeyDown = (e) => {
