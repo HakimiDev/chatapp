@@ -7,9 +7,9 @@
                 </header>
 
                 <main>
-                    <ul class="grid grid-cols-9">
+                    <ul class="grid grid-cols-9 mt-2">
                         <li v-for="(emoji, index) in emojis" :key="index"
-                            class="text-4xl m-1 p-1 flex justify-center items-center cursor-pointer rounded-full transition duration-500 hover:bg-secondary-50">
+                            class="text-3xl p-1 me-1 flex justify-center items-center cursor-pointer rounded-full transition duration-500 hover:bg-secondary-50">
                             <h2>{{ emoji }}</h2>
                         </li>
                     </ul>
