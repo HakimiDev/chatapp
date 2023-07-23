@@ -46,7 +46,7 @@
     <footer class="min-w-full bg-primary-100 fixed bottom-0 z-10">
         <Layout class="rounded-t">
             <div class="flex flex-row justify-between items-center text-xl">
-                <div class="cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50">
+                <div @click="toogleShowEmojiPicker" class="cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -75,6 +75,7 @@
 
             </div>
         </Layout>
+        <EmojiPicker :show="showEmojiPicker" />
     </footer>
 </template>
 
@@ -87,9 +88,13 @@ import UserAvatar from '../components/UserAvatar.vue';
 import Layout from '../components/Layout.vue';
 import InputField from '../components/InputField.vue';
 import Message from '../components/Message.vue';
+import EmojiPicker from '../components/EmojiPicker.vue';
 
 const showMinMune = ref(false);
 const toogleShowMinMune = (value) => (typeof value == "boolean") ? showMinMune.value = value : showMinMune.value = !showMinMune.value;
+
+const showEmojiPicker = ref(false);
+const toogleShowEmojiPicker = (value) => (typeof value == "boolean") ? showEmojiPicker.value = value : showEmojiPicker.value = !showEmojiPicker.value;
 
 const inputsData = ref({
     message: '',
