@@ -67,7 +67,7 @@
                     </svg>
                 </div>
 
-                <textarea ref="msgField" v-model="inputsData.message" id="" cols="2" rows="1"
+                <textarea @focus="toogleShowEmojiPicker(false)" ref="msgField" v-model="inputsData.message" id="" cols="2" rows="1"
                     class="w-full bg-transparent outline-none p-2 resize-none" placeholder="Message"
                     @keydown.enter="handelKeyDown" @keyup.enter="handelKeyUp"></textarea>
                 <div class="cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50"
