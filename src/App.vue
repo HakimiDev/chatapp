@@ -4,5 +4,4 @@
 
 <script setup>
     import { currentView } from './router/index';
-
 </script>
