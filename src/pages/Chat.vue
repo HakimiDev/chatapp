@@ -204,7 +204,7 @@ const handelSend = () => {
     msgField.value.focus();
     setTimeout(() => {
         msgsRef.value.scrollIntoView({ behavior: 'smooth' });
-    }, 150);
+    }, 250);
 };
 
 const appendEmoji = (emoji) => {

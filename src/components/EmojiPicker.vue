@@ -2,11 +2,11 @@
     <Transition>
         <div v-show="show" class="min-w-full h-72">
             <div class="bg-primary-300 min-w-full h-full overflow-y-auto overflow-x-hidden">
-                <header class=" min-w-full flex border-b-[1px] border-gray-400">
-                    <ul class="min-w-full grid grid-cols-8">
+                <header class="min-w-full flex border-b-[1px] border-gray-400">
+                    <ul class="min-w-full grid grid-cols-8 max-xs:grid-cols-4">
                         <li v-for="(category, index) in Object.keys(emojis)" :key="index" @click="selectCategory(category)"
-                            :class="selectedCategory === category ? 'bg-transparent' : 'bg-secondary-50 hover:bg-secondary-400'"
-                            class="text-2xl p-1 m-2 flex justify-center items-center cursor-pointer rounded-full transition duration-500">
+                            :class="selectedCategory === category ? ' bg-primary-200' : 'bg-secondary-50 hover:bg-primary-200'"
+                            class="text-lg p-1 px-5 m-2 flex justify-center items-center cursor-pointer rounded-full transition duration-500">
                             <h2>{{ emojis[category].icon }}</h2>
                         </li>
                     </ul>
@@ -14,12 +14,11 @@
 
                 <main>
                     <div v-if="emojis[selectedCategory].emojis.length">
-                        <ul class="min-w-full grid grid-cols-9 mt-2">
+                        <ul class="min-w-full grid grid-cols-9 max-xs:grid-cols-6 mt-2">
                             <li @click="append(emoji)" v-for="(emoji, index) in emojis[selectedCategory].emojis"
                                 :key="index"
                                 class="text-3xl p-1 me-1 flex justify-center items-center cursor-pointer rounded-full transition duration-500 hover:bg-secondary-50">
-                                <!-- <h2>{{ emoji }}</h2> -->
-                                <div v-html="emoji"></div>
+                                <div class="flex justify-center items-center" v-html="emoji"></div>
                             </li>
                         </ul>
                     </div>
@@ -144,7 +143,7 @@ function getEmojiCategory(codePoint) {
 
 .emoji {
     display: inline-block;
-    width: 45px;
+    width: 35px;
     height: 100%;
     padding: 2px;
 }
