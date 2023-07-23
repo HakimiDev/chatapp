@@ -1,6 +1,6 @@
 <template>
     <Transition>
-        <div v-show="show" class="min-w-full h-52">
+        <div v-show="show" class="min-w-full h-64">
             <div class="bg-primary-300 min-w-full min-h-full p-2">
                 <h2>EmojiPicker</h2>
             </div>

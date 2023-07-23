@@ -46,11 +46,17 @@
     <footer class="min-w-full bg-primary-100 fixed bottom-0 z-10">
         <Layout class="rounded-t">
             <div class="flex flex-row justify-between items-center text-xl">
-                <div @click="toogleShowEmojiPicker" class="cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6">
+                <div @click="toogleShowEmojiPicker"
+                    class="cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50">
+                    <svg v-if="!showEmojiPicker" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
+                    </svg>
+                    <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 9.75L14.25 12m0 0l2.25 2.25M14.25 12l2.25-2.25M14.25 12L12 14.25m-2.58 4.92l-6.375-6.375a1.125 1.125 0 010-1.59L9.42 4.83c.211-.211.498-.33.796-.33H19.5a2.25 2.25 0 012.25 2.25v10.5a2.25 2.25 0 01-2.25 2.25h-9.284c-.298 0-.585-.119-.796-.33z" />
                     </svg>
                 </div>
                 <div class="ms-2 cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50">
@@ -94,7 +100,10 @@ const showMinMune = ref(false);
 const toogleShowMinMune = (value) => (typeof value == "boolean") ? showMinMune.value = value : showMinMune.value = !showMinMune.value;
 
 const showEmojiPicker = ref(false);
-const toogleShowEmojiPicker = (value) => (typeof value == "boolean") ? showEmojiPicker.value = value : showEmojiPicker.value = !showEmojiPicker.value;
+const toogleShowEmojiPicker = (value) => {
+    (typeof value == "boolean") ? showEmojiPicker.value = value : showEmojiPicker.value = !showEmojiPicker.value;
+    if (!showEmojiPicker.value) msgField.value.focus();
+};
 
 const inputsData = ref({
     message: '',
@@ -228,5 +237,4 @@ textarea::-webkit-scrollbar-thumb {
 textarea::-webkit-scrollbar-track {
     background-color: transparent;
     border-radius: 0.25rem;
-}
-</style>
+}</style>
