@@ -83,7 +83,7 @@
 
                 </div>
             </Layout>
-            <EmojiPicker :show="showEmojiPicker" />
+            <EmojiPicker :show="showEmojiPicker" :append="appendEmoji" />
         </footer>
     </div>
 </template>
@@ -187,6 +187,10 @@ const handelSend = () => {
     setTimeout(() => {
         msgsRef.value.scrollIntoView({ behavior: 'smooth' });
     }, 50);
+};
+
+const appendEmoji = (emoji) => {
+    inputsData.value.message += emoji;
 };
 
 const handelKeyDown = (e) => {
