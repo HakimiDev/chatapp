@@ -4,11 +4,11 @@
             class="relative py-2 px-4 inline-block max-w-[65%] h-fit break-words rounded-3xl">
             <div
                 v-if="message.byMe && (!messages[index - 1] || message.byMe !== messages[index - 1].byMe)"
-                class="absolute top-[4px] mt-[-6px]  right-[-10px] ml-[-5px] border-l-[12px] border-r-[12px] border-transparent border-b-[12px] border-b-secondary-200 -rotate-[45deg] rounded-lg">
+                class="absolute top-[-1.8px]  right-[-10px] ml-[-5px] border-l-[12px] border-r-[12px] border-transparent border-b-[12px] border-b-secondary-200 -rotate-[45deg] rounded">
             </div>
             <div
                 v-else-if="!message.byMe && (!messages[index - 1] || message.byMe !== messages[index - 1].byMe)"
-                class="absolute top-[4px] mt-[-6px]  left-[-10px] mr-[-5px] border-r-[12px] border-l-[12px] border-transparent border-b-[12px] border-b-primary-300 rotate-[45deg] rounded-lg">
+                class="absolute top-[-1.8px]  left-[-10px] mr-[-5px] border-r-[12px] border-l-[12px] border-transparent border-b-[12px] border-b-primary-300 rotate-[45deg] rounded">
             </div>
 
             <p v-html="message.content"></p>
