@@ -166,7 +166,7 @@ const handelSend = () => {
     msgField.value.focus();
     setTimeout(() => {
         msgsRef.value.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
+    }, 50);
 };
 
 const handelKeyDown = (e) => {
