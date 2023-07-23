@@ -43,7 +43,7 @@
         </ul>
     </main>
 
-    <footer class="min-w-full bg-primary-100 fixed bottom-0 z-10">
+    <footer class="min-w-full bg-primary-100 sticky bottom-0 z-10">
         <Layout class="rounded-t">
             <div class="flex flex-row justify-between items-center text-xl">
                 <div @click="toogleShowEmojiPicker"
