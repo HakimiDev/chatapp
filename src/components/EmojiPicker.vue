@@ -18,7 +18,8 @@
                             <li @click="append(emoji)" v-for="(emoji, index) in emojis[selectedCategory].emojis"
                                 :key="index"
                                 class="text-3xl p-1 me-1 flex justify-center items-center cursor-pointer rounded-full transition duration-500 hover:bg-secondary-50">
-                                <h2>{{ emoji }}</h2>
+                                <!-- <h2>{{ emoji }}</h2> -->
+                                <div v-html="emoji"></div>
                             </li>
                         </ul>
                     </div>
@@ -77,35 +78,14 @@ const emojis = ref({
     },
 });
 
-// for (let i = 0x1F300; i <= 0x1F9FF; i++) {
-//     const category = getEmojiCategory(i);
-//     if (category) {
-//         emojis.value[category].emojis.push(String.fromCodePoint(i));
-//     }
-// }
-
-// // for (let i = 0x1F300; i <= 0x1F5FF; i++) {
-// //   const category = getEmojiCategory(i);
-// //   if (category) {
-// //     emojis.value[category].emojis.push(String.fromCodePoint(i));
-// //   }
-// // }
-
-// for (let i = 0x1F1E6; i <= 0x1F1FF; i++) {
-//   const category = getEmojiCategory(i);
-//   if (category) {
-//     emojis.value[category].emojis.push(String.fromCodePoint(i));
-//   }
-// }
-
 for (let i = 0x1F300; i <= 0x1F9FF; i++) {
     const category = getEmojiCategory(i);
     if (category) {
-        emojis.value[category].emojis.push(String.fromCodePoint(i));
+        let emoji = twemoji.parse(String.fromCodePoint(i));
+        //emoji = `<img ${emoji.substring(19, emoji.length - 2)} class=' inline-block p-1' />`;
+        emojis.value[category].emojis.push(emoji);
     }
 }
-
-
 
 function getEmojiCategory(codePoint) {
     if (codePoint >= 0x1F600 && codePoint <= 0x1F64F) {
@@ -147,7 +127,7 @@ function getEmojiCategory(codePoint) {
 }
 </style>
 
-<style scoped>
+<style>
 ::-webkit-scrollbar {
     width: 0.1rem;
 }
@@ -160,5 +140,12 @@ function getEmojiCategory(codePoint) {
 ::-webkit-scrollbar-track {
     background-color: transparent;
     border-radius: 0.25rem;
+}
+
+.emoji {
+    display: inline-block;
+    width: 45px;
+    height: 100%;
+    padding: 2px;
 }
 </style>

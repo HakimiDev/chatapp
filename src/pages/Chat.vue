@@ -1,5 +1,6 @@
 <template>
     <MinMune type="2" :show="showMinMune" :toggleShow="toogleShowMinMune" />
+
     <div class="min-h-screen min-w-full flex flex-col">
         <header class="w-full fixed top-0 flex items-center z-10">
             <div class="min-w-full bg-primary-100 flex flex-row items-center p-2 rounded-b">
@@ -21,7 +22,8 @@
 
                 <div class="flex-1 ps-4">
                     <div class="flex flex-col leading-5">
-                        <h2 class="text-lg max-xs:text-sm font-semibold">{{ (typeof user.username == "string") ? user.username.substring(0, 18) : '' }}</h2>
+                        <h2 class="text-lg max-xs:text-sm font-semibold">{{ (typeof user.username == "string") ?
+                            user.username.substring(0, 18) : '' }}</h2>
                         <h3 class="text-gray-400 ms-1">typing...</h3>
                     </div>
                 </div>
@@ -69,8 +71,8 @@
                         </svg>
                     </div>
 
-                    <textarea @focus="toogleShowEmojiPicker(false)" ref="msgField" v-model="inputsData.message" id=""
-                        cols="2" rows="1" class="w-full bg-transparent outline-none p-2 resize-none" placeholder="Message"
+                    <textarea @focus="toogleShowEmojiPicker(false)" ref="msgField" v-model="inputsData.message" cols="2"
+                        rows="1" class="w-full bg-transparent outline-none p-2 resize-none" placeholder="Message"
                         @keydown.enter="handelKeyDown" @keyup.enter="handelKeyUp"></textarea>
                     <div class="cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50"
                         @click="handelSend">
@@ -129,36 +131,44 @@ function getRandomNumber(min, max) {
 
 const messages = ref([
     {
-        content: 'old price is $78 now is ~$29~',
-        byMe: false
+        content: 'old price is $78 now is ~$29~ 🙂',
+        byMe: false,
+        emoji: false
     },
     {
         content: 'Anyone here?',
-        byMe: false
+        byMe: false,
+        emoji: false
     },
     {
         content: 'I\'m doing pretty well, thanks for asking. How about you?',
-        byMe: true
+        byMe: true,
+        emoji: false
     },
     {
         content: 'I\'m doing okay. Just been busy with work lately.',
-        byMe: false
+        byMe: false,
+        emoji: false
     },
     {
         content: 'Yeah, I hear you. Work has been crazy for me too.',
-        byMe: true
+        byMe: true,
+        emoji: false
     },
     {
         content: 'By the way, did you have a chance to look at the report I sent over?',
-        byMe: true
+        byMe: true,
+        emoji: false
     },
     {
         content: 'Not yet, but I\'ll take a look at it later today.',
-        byMe: false
+        byMe: false,
+        emoji: false
     },
     {
         content: 'Great, thanks. Let me know if you have any questions.',
-        byMe: true
+        byMe: true,
+        emoji: false
     }
 ]);
 
@@ -167,6 +177,14 @@ const displayMessages = computed(() => messages.value.map((e) => {
     e.content = e.content.replace(/\*([^*]+)\*/g, (e) => `<span class="font-bold">${e.substring(1, e.length - 1)}</span>`);
     e.content = e.content.replace(/~([^~]+~)/g, (e) => `<span class="line-through">${e.substring(1, e.length - 1)}</span>`);
     e.content = e.content.replace(/`([^`]+`)/g, (e) => `<span class="bg-black text-black hover:bg-transparent hover:text-primary-200">${e.substring(1, e.length - 1)}</span>`);
+
+    for (let i = 0x1F300; i <= 0x1F9FF; i++) {
+        const code = String.fromCodePoint(i);
+        const emoji = twemoji.parse(code);
+        const regex = /(<img[^>]* alt=")([^"]*)("[^>]*>)/g;
+        e.content = e.content.replaceAll(code, emoji.replace(regex, `$1${i}$3`));
+    }
+
     if (!e.time) {
         e.time = `${getRandomNumber(1, 12)}:${getRandomNumber(1, 59)} ${(Math.random() * 10) > 5 ? 'am' : 'pm'}`;
     }
@@ -190,7 +208,7 @@ const handelSend = () => {
 };
 
 const appendEmoji = (emoji) => {
-    inputsData.value.message += emoji;
+    inputsData.value.message += emoji.substring(42, 44);
 };
 
 const handelKeyDown = (e) => {
@@ -202,7 +220,11 @@ const handelKeyUp = (e) => {
     inputsData.value.message = '';
 };
 
-
+window.addEventListener('keydown', (e) => {
+    if (e.key == "Enter" && showEmojiPicker.value) {
+        handelSend();
+    } 
+})
 
 const imageUrl = ref('');
 
