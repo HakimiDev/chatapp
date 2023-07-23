@@ -89,7 +89,7 @@
 </template>
 
 <script setup>
-import { computed, nextTick, onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { selectedUser } from '../stores/chat';
 
 import MinMune from '../components/MinMune.vue';
@@ -106,6 +106,9 @@ const showEmojiPicker = ref(false);
 const toogleShowEmojiPicker = (value) => {
     (typeof value == "boolean") ? showEmojiPicker.value = value : showEmojiPicker.value = !showEmojiPicker.value;
     if (!showEmojiPicker.value) msgField.value.focus();
+    setTimeout(() => {
+        msgsRef.value.scrollIntoView({ behavior: 'smooth' });
+    }, 50);
 };
 
 const inputsData = ref({
