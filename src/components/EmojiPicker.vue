@@ -1,6 +1,6 @@
 <template>
     <Transition>
-        <div v-show="show" class="min-w-full h-72">
+        <div v-show="show" class="min-w-full h-80">
             <div class="bg-primary-300 min-w-full h-full overflow-y-auto overflow-x-hidden">
                 <header class="min-w-full flex border-b-[1px] border-gray-400">
                     <ul class="min-w-full grid grid-cols-8 max-xs:grid-cols-4">
