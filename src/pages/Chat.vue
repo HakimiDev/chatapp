@@ -1,8 +1,8 @@
 <template>
     <MinMune type="2" :show="showMinMune" :toggleShow="toogleShowMinMune" />
 
-    <div class="min-w-full flex flex-col h-screen overflow-y-hidden">
-        <header class="w-full fixed top-0 flex items-center z-10">
+    <div class="min-w-full flex flex-col">
+        <header class="min-w-full fixed top-0 flex items-center z-10">
             <div class="min-w-full bg-primary-100 flex flex-row items-center p-2 rounded-b">
                 <div>
                     <div class="flex flex-row items-center">
