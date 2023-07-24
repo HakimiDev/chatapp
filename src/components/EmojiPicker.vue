@@ -28,7 +28,7 @@
 
                 </main>
 
-                <footer class="fixed bottom-0 min-w-full bg-primary-100 p-2">
+                <footer class=" sticky bottom-0 min-w-full bg-primary-100 p-2">
                     <div class="min-w-full flex flex-row justify-end items-center bg-primary-100">
                         <div @click="remove"
                         class="cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50">
