@@ -17,7 +17,7 @@
                         <ul class="min-w-full grid grid-cols-9 max-xs:grid-cols-6 my-1">
                             <li @click="append(emoji)" v-for="(emoji, index) in emojis[selectedCategory].emojis"
                                 :key="index"
-                                class="text-3xl p-1 me-1 flex justify-center items-center cursor-pointer rounded-full transition duration-500 hover:bg-secondary-50">
+                                class="text-3xl p-1 mx-1 flex justify-center items-center cursor-pointer rounded-full transition duration-500 hover:bg-secondary-50">
                                 <div class="flex justify-center items-center" v-html="emoji"></div>
                             </li>
                         </ul>
@@ -156,7 +156,7 @@ function getEmojiCategory(codePoint) {
 
 .emoji {
     display: inline-block;
-    width: 35px;
+    width: 5vh;
     height: 100%;
     padding: 2px;
 }
