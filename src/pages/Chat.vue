@@ -85,7 +85,7 @@
 
                 </div>
             </Layout>
-            <EmojiPicker :show="showEmojiPicker" :append="appendEmoji" />
+            <EmojiPicker :show="showEmojiPicker" :append="appendEmoji" :remove="removeEmoji" />
         </footer>
     </div>
 </template>
@@ -209,6 +209,10 @@ const handelSend = () => {
 
 const appendEmoji = (emoji) => {
     inputsData.value.message += emoji.substring(42, 44);
+};
+
+const removeEmoji = () => {
+    inputsData.value.message = inputsData.value.message.substring(0, inputsData.value.message.length - 1);
 };
 
 const handelKeyDown = (e) => {
