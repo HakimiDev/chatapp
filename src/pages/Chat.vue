@@ -1,7 +1,7 @@
 <template>
     <MinMune type="2" :show="showMinMune" :toggleShow="toogleShowMinMune" />
 
-    <div class="min-w-full flex flex-col">
+    <div class="min-w-full min-h-full flex flex-col">
         <header class="min-w-full fixed top-0 flex items-center z-10">
             <div class="min-w-full bg-primary-100 flex flex-row items-center p-2 rounded-b">
                 <div>
@@ -39,7 +39,7 @@
             </div>
         </header>
 
-        <main class="mt-16 text-md overflow-y-scroll">
+        <main class="mt-16 min-w-full min-h-screen text-md overflow-y-scroll">
             <ul class="p-2 min-w-full min-h-full">
                 <Message v-for="(message, index) in displayMessages" :key="index" :messages="messages" :message="message"
                     :index="index" />
@@ -47,7 +47,7 @@
             </ul>
         </main>
 
-        <footer class="min-w-full h-fit sticky bottom-0 z-10 bg-primary-100">
+        <footer class="min-w-full sticky bottom-0 z-10 bg-primary-300">
             <Layout class="rounded-t">
                 <div class="flex flex-row justify-between items-center text-xl">
                     <div @click="toogleShowEmojiPicker"
