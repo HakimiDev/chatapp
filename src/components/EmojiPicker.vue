@@ -14,7 +14,7 @@
 
                 <main>
                     <div v-if="emojis[selectedCategory].emojis.length">
-                        <ul class="min-w-full grid grid-cols-9 max-xs:grid-cols-6 my-1">
+                        <ul class="min-w-full grid grid-cols-8 max-xs:grid-cols-6 my-1">
                             <li @click="append(emoji)" v-for="(emoji, index) in emojis[selectedCategory].emojis"
                                 :key="index"
                                 class="text-3xl p-1 mx-1 flex justify-center items-center cursor-pointer rounded-full transition duration-500 hover:bg-secondary-50">
