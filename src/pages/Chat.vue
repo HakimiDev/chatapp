@@ -37,7 +37,7 @@
         </div>
     </header>
 
-    <main class="mt-16 min-w-full min-h-screen text-md overflow-y-scroll">
+    <main class="mt-16 min-w-full min-h-full text-md overflow-y-scroll">
         <ul class="p-2 min-w-full min-h-full">
             <Message v-for="(message, index) in displayMessages" :key="index" :messages="messages" :message="message"
                 :index="index" />
