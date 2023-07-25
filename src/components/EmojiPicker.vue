@@ -3,7 +3,7 @@
         <div v-show="show" class="min-w-full h-80">
             <div class="bg-primary-300 min-w-full h-full overflow-y-auto overflow-x-hidden relative">
                 <header ref="header" class="min-w-full flex border-b-[1px] border-gray-400">
-                    <ul class="min-w-full grid grid-cols-8 max-xs:grid-cols-4">
+                    <ul class="min-w-full grid grid-cols-9 max-xs:grid-cols-4">
                         <li v-for="(category, index) in Object.keys(emojis)" :key="index" @click="selectCategory(category)"
                             :class="selectedCategory === category ? ' bg-primary-200' : 'bg-secondary-50 hover:bg-primary-200'"
                             class="text-lg p-1 px-5 m-2 flex justify-center items-center cursor-pointer rounded-full transition duration-500">
@@ -46,9 +46,11 @@
 </template>
 
 <script setup>
-import { onUpdated, ref } from 'vue';
+import { onUpdated, onMounted, ref } from 'vue';
 
-defineProps(['show', 'append', 'remove']);
+const props = defineProps(['show', 'append', 'remove', 'emojis']);
+
+const emojis = props.emojis;
 
 const selectedCategory = ref('people');
 const selectCategory = (category) => {
@@ -63,71 +65,13 @@ onUpdated(() => {
     }, 200);
 });
 
-const emojis = ref({
-    people: {
-        icon: "😀",
-        emojis: [],
-    },
-    nature: {
-        icon: "🙈",
-        emojis: [],
-    },
-    food: {
-        icon: "🍎",
-        emojis: [],
-    },
-    activity: {
-        icon: "🏄",
-        emojis: [],
-    },
-    travel: {
-        icon: "✈️",
-        emojis: [],
-    },
-    objects: {
-        icon: "💡",
-        emojis: [],
-    },
-    symbols: {
-        icon: "💔",
-        emojis: [],
-    },
-    flags: {
-        icon: "🏳️",
-        emojis: [],
-    },
-});
-
-for (let i = 0x1F300; i <= 0x1F9FF; i++) {
-    const category = getEmojiCategory(i);
-    if (category) {
-        let emoji = twemoji.parse(String.fromCodePoint(i));
-        //emoji = `<img ${emoji.substring(19, emoji.length - 2)} class=' inline-block p-1' />`;
-        emojis.value[category].emojis.push(emoji);
-    }
+for (const c of Object.values(emojis)) {
+    c.emojis = c.emojis.map(e => {
+        if (!e.startsWith('<img')) e = twemoji.parse(e);
+        return e;
+    });
 }
 
-function getEmojiCategory(codePoint) {
-    if (codePoint >= 0x1F600 && codePoint <= 0x1F64F) {
-        return 'people';
-    } else if (codePoint >= 0x1F400 && codePoint <= 0x1F4F0) {
-        return 'nature';
-    } else if (codePoint >= 0x1F300 && codePoint <= 0x1F35F) {
-        return 'food';
-    } else if (codePoint >= 0x1F680 && codePoint <= 0x1F6C0) {
-        return 'activity';
-    } else if (codePoint >= 0x1F680 && codePoint <= 0x1F6C0) {
-        return 'travel';
-    } else if (codePoint >= 0x1F680 && codePoint <= 0x1F6C0) {
-        return 'objects';
-    } else if (codePoint >= 0x1F680 && codePoint <= 0x1F6C0) {
-        return 'symbols';
-    } else if (codePoint >= 0x1F680 && codePoint <= 0x1F6C0) {
-        return 'flags';
-    } else {
-        return null;
-    }
-}
 
 </script>
 
@@ -164,7 +108,7 @@ function getEmojiCategory(codePoint) {
 
 .emoji {
     display: inline-block;
-    width: 5vh;
+    width: 40px;
     height: 100%;
     padding: 2px;
 }
