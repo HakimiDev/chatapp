@@ -1,7 +1,7 @@
 <template>
     <li :class="message.byMe ? 'justify-end' : 'justify-start'" class="min-w-full h-fit flex p-1">
         <div :class="[message.byMe ? ' bg-secondary-200' : 'bg-primary-300', (messages[index - 1] && message.byMe === messages[index - 1].byMe) ? 'ms-1 me-1' : (message.byMe) ? 'rounded-tr-none' : 'rounded-tl-none']"
-            class="relative text-md py-2 px-4 inline-block max-w-[65%] h-fit break-words rounded-3xl">
+            class="relative text-md py-2 px-4 inline-block max-w-[95%] h-fit break-words rounded-3xl">
             <div
                 v-if="message.byMe && (!messages[index - 1] || message.byMe !== messages[index - 1].byMe)"
                 class="absolute top-[-1.8px]  right-[-10px] ml-[-5px] border-l-[12px] border-r-[12px] border-transparent border-b-[12px] border-b-secondary-200 -rotate-[45deg] rounded">

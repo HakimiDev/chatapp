@@ -108,7 +108,7 @@ for (const c of Object.values(emojis)) {
 
 .emoji {
     display: inline-block;
-    width: 40px;
+    width: 30px;
     height: 100%;
     padding: 2px;
 }
