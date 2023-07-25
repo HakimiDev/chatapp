@@ -1,90 +1,92 @@
 <template>
-    <MinMune type="2" :show="showMinMune" :toggleShow="toogleShowMinMune" />
+    <div class="min-w-full min-h-screen flex flex-col">
+        <MinMune type="2" :show="showMinMune" :toggleShow="toogleShowMinMune" />
+        <header class="min-w-full fixed top-0 flex items-center z-10">
+            <div class="min-w-full bg-primary-100 flex flex-row items-center p-2 rounded-b">
+                <div>
+                    <div class="flex flex-row items-center">
+                        <div class="me-2 cursor-pointer rounded-full p-1 transition duration-500 hover:bg-secondary-50">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-7 h-7">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                            </svg>
+                        </div>
+                        <UserAvatar :user="user" />
 
-    <header class="min-w-full fixed top-0 flex items-center z-10">
-        <div class="min-w-full bg-primary-100 flex flex-row items-center p-2 rounded-b">
-            <div>
-                <div class="flex flex-row items-center">
-                    <div class="me-2 cursor-pointer rounded-full p-1 transition duration-500 hover:bg-secondary-50">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-7 h-7">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                        <!-- <input type="file" @change="handleFileInput" multiple> -->
+
+                    </div>
+                </div>
+
+                <div class="flex-1 ps-4">
+                    <div class="flex flex-col leading-5">
+                        <h2 class="text-lg max-xs:text-sm font-semibold">{{ (typeof user.username == "string") ?
+                            user.username.substring(0, 18) : '' }}</h2>
+                        <h3 class="text-gray-400 ms-1">typing...</h3>
+                    </div>
+                </div>
+
+                <div @click="toogleShowMinMune"
+                    class="cursor-pointer rounded-full p-1 transition duration-500 hover:bg-secondary-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+                    </svg>
+                </div>
+            </div>
+        </header>
+
+        <main class="text-md overflow-y-scroll pt-16 min-h-full">
+            <ul class="p-2 min-w-full min-h-full">
+                <Message v-for="(message, index) in displayMessages" :key="index" :messages="messages" :message="message"
+                    :index="index" />
+                <div ref="msgsRef"></div>
+            </ul>
+        </main>
+
+        <footer class="min-w-full sticky bottom-0 z-10 bg-primary-300">
+            <Layout class="rounded-t">
+                <div class="flex flex-row justify-between items-center text-xl">
+                    <div @click="toogleShowEmojiPicker"
+                        class="cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50">
+                        <svg v-if="!showEmojiPicker" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
+                        </svg>
+                        <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 9.75L14.25 12m0 0l2.25 2.25M14.25 12l2.25-2.25M14.25 12L12 14.25m-2.58 4.92l-6.375-6.375a1.125 1.125 0 010-1.59L9.42 4.83c.211-.211.498-.33.796-.33H19.5a2.25 2.25 0 012.25 2.25v10.5a2.25 2.25 0 01-2.25 2.25h-9.284c-.298 0-.585-.119-.796-.33z" />
                         </svg>
                     </div>
-                    <UserAvatar :user="user" />
+                    <div class="ms-2 cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
+                        </svg>
+                    </div>
 
-                    <!-- <input type="file" @change="handleFileInput" multiple> -->
+                    <textarea @focus="toogleShowEmojiPicker(false)" ref="msgField" v-model="inputsData.message" cols="2"
+                        rows="1" class="w-full bg-transparent outline-none p-2 resize-none" placeholder="Message"
+                        @keydown.enter="handelKeyDown" @keyup.enter="handelKeyUp"></textarea>
+                    <div class="cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50"
+                        @click="handelSend">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                        </svg>
+                    </div>
 
                 </div>
-            </div>
-
-            <div class="flex-1 ps-4">
-                <div class="flex flex-col leading-5">
-                    <h2 class="text-lg max-xs:text-sm font-semibold">{{ (typeof user.username == "string") ?
-                        user.username.substring(0, 18) : '' }}</h2>
-                    <h3 class="text-gray-400 ms-1">typing...</h3>
-                </div>
-            </div>
-
-            <div @click="toogleShowMinMune"
-                class="cursor-pointer rounded-full p-1 transition duration-500 hover:bg-secondary-50">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                </svg>
-            </div>
-        </div>
-    </header>
-
-    <main class="mt-16 min-w-full min-h-full text-md overflow-y-scroll">
-        <ul class="p-2 min-w-full min-h-full">
-            <Message v-for="(message, index) in displayMessages" :key="index" :messages="messages" :message="message"
-                :index="index" />
-            <div ref="msgsRef"></div>
-        </ul>
-    </main>
-
-    <footer class="min-w-full sticky bottom-0 z-10 bg-primary-300">
-        <Layout class="rounded-t">
-            <div class="flex flex-row justify-between items-center text-xl">
-                <div @click="toogleShowEmojiPicker"
-                    class="cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50">
-                    <svg v-if="!showEmojiPicker" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
-                    </svg>
-                    <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 9.75L14.25 12m0 0l2.25 2.25M14.25 12l2.25-2.25M14.25 12L12 14.25m-2.58 4.92l-6.375-6.375a1.125 1.125 0 010-1.59L9.42 4.83c.211-.211.498-.33.796-.33H19.5a2.25 2.25 0 012.25 2.25v10.5a2.25 2.25 0 01-2.25 2.25h-9.284c-.298 0-.585-.119-.796-.33z" />
-                    </svg>
-                </div>
-                <div class="ms-2 cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
-                    </svg>
-                </div>
-
-                <textarea @focus="toogleShowEmojiPicker(false)" ref="msgField" v-model="inputsData.message" cols="2"
-                    rows="1" class="w-full bg-transparent outline-none p-2 resize-none" placeholder="Message"
-                    @keydown.enter="handelKeyDown" @keyup.enter="handelKeyUp"></textarea>
-                <div class="cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50"
-                    @click="handelSend">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                    </svg>
-                </div>
-
-            </div>
-        </Layout>
-        <EmojiPicker :emojis="emojis" :show="showEmojiPicker" :append="appendEmoji" :remove="removeEmoji" />
-    </footer>
+            </Layout>
+            <EmojiPicker :emojis="emojis" :show="showEmojiPicker" :append="appendEmoji" :remove="removeEmoji" />
+        </footer>
+    </div>
 </template>
 
 <script setup>
