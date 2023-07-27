@@ -6,7 +6,7 @@
                     <ul class="min-w-full grid grid-cols-9 max-xs:grid-cols-4">
                         <li v-for="(category, index) in Object.keys(emojis)" :key="index" @click="selectCategory(category)"
                             :class="selectedCategory === category ? ' bg-primary-200' : 'bg-secondary-50 hover:bg-primary-200'"
-                            class="text-lg p-1 px-5 m-2 flex justify-center items-center cursor-pointer rounded-full transition duration-500">
+                            class="text-lg p-1 px-5 m-1 me-2 flex justify-center items-center cursor-pointer rounded-full transition duration-500">
                             <h2>{{ emojis[category].icon }}</h2>
                         </li>
                     </ul>
