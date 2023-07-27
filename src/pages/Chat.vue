@@ -84,15 +84,16 @@
 
                 </div>
             </Layout>
-            <EmojiPicker :emojis="emojis" :show="showEmojiPicker" :append="appendEmoji" :remove="removeEmoji" />
+            <EmojiPicker :show="showEmojiPicker" :onAppend="appendEmoji" :onRemove="removeEmoji" />
         </footer>
     </div>
 </template>
 
 <script setup>
 import { computed, onMounted, ref } from 'vue';
+import { emojiParser } from '../stores/emojis';
 import { selectedUser } from '../stores/chat';
-import { messages, emojis } from '../stores/data';
+import { messages } from '../stores/data';
 import { getRandomNumber } from '../utils/index';
 
 import MinMune from '../components/MinMune.vue';
@@ -131,10 +132,7 @@ const displayMessages = computed(() => messages.value.map((e) => {
     e.content = e.content.replace(/\*([^*]+)\*/g, (e) => `<span class="font-bold">${e.substring(1, e.length - 1)}</span>`);
     e.content = e.content.replace(/~([^~]+~)/g, (e) => `<span class="line-through">${e.substring(1, e.length - 1)}</span>`);
     e.content = e.content.replace(/`([^`]+`)/g, (e) => `<span class="bg-black text-black hover:bg-transparent hover:text-primary-200">${e.substring(1, e.length - 1)}</span>`);
-
-    const altRegex = /alt="([^"]*)"/g;
-    e.content = e.content.replace(altRegex, Date.now());
-    e.content = twemoji.parse(e.content);
+    e.content = emojiParser(e.content);
 
     if (!e.time) e.time = `${getRandomNumber(1, 12)}:${getRandomNumber(1, 59)} ${(Math.random() * 10) > 5 ? 'am' : 'pm'}`;
 
@@ -158,12 +156,11 @@ const handelSend = () => {
 };
 
 const appendEmoji = (emoji) => {
-    const altRegex = /alt="([^"]*)"/;
-    inputsData.value.message += emoji.match(altRegex)[1];
+    inputsData.value.message += emoji;
 };
 
-const removeEmoji = () => {
-    inputsData.value.message = inputsData.value.message.substring(0, inputsData.value.message.length - 1);
+const removeEmoji = (emojiLength = 1) => {
+    inputsData.value.message = inputsData.value.message.substring(0, inputsData.value.message.length - emojiLength);
 };
 
 const handelKeyDown = (e) => {

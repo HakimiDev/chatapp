@@ -15,10 +15,10 @@
                 <main>
                     <div v-if="emojis[selectedCategory].emojis.length">
                         <ul class="min-w-full grid grid-cols-8 max-xs:grid-cols-6 my-1">
-                            <li @click="append(emoji)" v-for="(emoji, index) in emojis[selectedCategory].emojis"
+                            <li @click="appendEmoji(emoji.native)" v-for="(emoji, index) in emojis[selectedCategory].emojis"
                                 :key="index"
                                 class="text-3xl p-1 mx-1 flex justify-center items-center cursor-pointer rounded-full transition duration-500 hover:bg-secondary-50">
-                                <div class="flex justify-center items-center" v-html="emoji"></div>
+                                <div class="flex justify-center items-center" v-html="emoji.custom"></div>
                             </li>
                         </ul>
                     </div>
@@ -31,7 +31,7 @@
             </div>
             <footer class=" sticky bottom-0 min-w-full bg-primary-100 p-2">
                 <div class="min-w-full flex flex-row justify-end items-center bg-primary-100">
-                    <div @click="remove"
+                    <div @click="removeEmoji()"
                         class="cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
@@ -46,32 +46,28 @@
 </template>
 
 <script setup>
-import { onUpdated, onMounted, ref } from 'vue';
+import { onUpdated, ref } from 'vue';
+import { emojis } from '../stores/emojis/index';
 
-const props = defineProps(['show', 'append', 'remove', 'emojis']);
+const props = defineProps(['show', 'onAppend', 'onRemove']);
 
-const emojis = props.emojis;
+const appendEmoji = (emoji) => {
+    props.onAppend(emoji);
+};
 
-const selectedCategory = ref('people');
+const removeEmoji = (emojiLength = 1) => {
+    props.onRemove(emojiLength);
+};
+
+const selectedCategory = ref('Smileys & Emotion');
 const selectCategory = (category) => {
     selectedCategory.value = category;
 };
 
 const header = ref(null);
 onUpdated(() => {
-    selectedCategory.value = 'people';
-    setTimeout(() => {
-        header.value.scrollIntoView();
-    }, 200);
+    header.value.scrollIntoView();
 });
-
-for (const c of Object.values(emojis)) {
-    c.emojis = c.emojis.map(e => {
-        if (!e.startsWith('<img')) e = twemoji.parse(e);
-        return e;
-    });
-}
-
 
 </script>
 
@@ -108,7 +104,7 @@ for (const c of Object.values(emojis)) {
 
 .emoji {
     display: inline-block;
-    width: 30px;
+    width: 36px;
     height: 100%;
     padding: 2px;
 }
