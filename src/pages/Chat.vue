@@ -182,9 +182,7 @@ const imageUrl = ref('');
 function handleFileInput(event) {
     const files = event.target.files;
 
-    if (!files.length) {
-        return;
-    }
+    if (!files.length) return;
 
     for (const file of files) {
         const reader = new FileReader();
