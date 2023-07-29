@@ -92,8 +92,7 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue';
 import { emojiParser } from '../stores/emojis';
-import { selectedUser } from '../stores/chat';
-import { messages } from '../stores/data';
+import { selectedUser, messages } from '../stores/chat';
 import { getRandomNumber } from '../utils/index';
 
 import MinMune from '../components/MinMune.vue';

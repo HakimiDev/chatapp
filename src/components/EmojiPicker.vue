@@ -104,7 +104,7 @@ onUpdated(() => {
 
 .emoji {
     display: inline-block;
-    width: 36px;
+    width: 33px;
     height: 100%;
     padding: 2px;
 }
