@@ -3,7 +3,7 @@
         <div v-show="show" class="min-w-full h-80">
             <div class="bg-primary-300 min-w-full h-full overflow-y-auto overflow-x-hidden relative">
                 <header ref="header" class="min-w-full flex border-b-[1px] border-gray-400">
-                    <ul class="min-w-full grid grid-cols-9 max-xs:grid-cols-4">
+                    <ul class="min-w-full grid grid-cols-5">
                         <li v-for="(category, index) in Object.keys(emojis)" :key="index" @click="selectCategory(category)"
                             :class="selectedCategory === category ? ' bg-primary-200' : 'bg-secondary-50 hover:bg-primary-200'"
                             class="text-lg p-1 px-5 m-1 me-2 flex justify-center items-center cursor-pointer rounded-full transition duration-500">
@@ -15,7 +15,7 @@
                 <main>
                     <div v-if="emojis[selectedCategory].emojis.length">
                         <ul class="min-w-full grid grid-cols-8 max-xs:grid-cols-6 my-1">
-                            <li @click="appendEmoji(emoji.native)" v-for="(emoji, index) in emojis[selectedCategory].emojis"
+                            <li @click="appendEmoji(emoji)" v-for="(emoji, index) in emojis[selectedCategory].emojis"
                                 :key="index"
                                 class="text-3xl p-1 mx-1 flex justify-center items-center cursor-pointer rounded-full transition duration-500 hover:bg-secondary-50">
                                 <div class="flex justify-center items-center" v-html="emoji.custom"></div>
@@ -47,12 +47,16 @@
 
 <script setup>
 import { onUpdated, ref } from 'vue';
-import { emojis } from '../stores/emojis/index';
+import { emojis, lastUsedEmojis, onLastUsedEmojisChange } from '../stores/emojis/index';
 
 const props = defineProps(['show', 'onAppend', 'onRemove']);
 
 const appendEmoji = (emoji) => {
-    props.onAppend(emoji);
+    props.onAppend(emoji.native);
+    if (lastUsedEmojis.value.length >= 20) lastUsedEmojis.value.pop();
+    if (lastUsedEmojis.value.find(e => e.native === emoji.native)) lastUsedEmojis.value = lastUsedEmojis.value.filter(e => e.native !== emoji.native);
+    lastUsedEmojis.value.unshift(emoji);
+    onLastUsedEmojisChange();
 };
 
 const removeEmoji = (emojiLength = 1) => {

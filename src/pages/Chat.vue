@@ -98,7 +98,6 @@ import { getRandomNumber } from '../utils/index';
 import MinMune from '../components/MinMune.vue';
 import UserAvatar from '../components/UserAvatar.vue';
 import Layout from '../components/Layout.vue';
-import InputField from '../components/InputField.vue';
 import Message from '../components/Message.vue';
 import EmojiPicker from '../components/EmojiPicker.vue';
 
