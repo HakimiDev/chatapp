@@ -54,7 +54,7 @@ const props = defineProps(['show', 'onAppend', 'onRemove']);
 const appendEmoji = (emoji) => {
     props.onAppend(emoji.native);
     if (lastUsedEmojis.value.length >= 20) lastUsedEmojis.value.pop();
-    if (lastUsedEmojis.value.find(e => e.native === emoji.native)) lastUsedEmojis.value = lastUsedEmojis.value.filter(e => e.native !== emoji.native);
+    // if (lastUsedEmojis.value.find(e => e.native === emoji.native)) lastUsedEmojis.value = lastUsedEmojis.value.filter(e => e.native !== emoji.native);
     lastUsedEmojis.value.unshift(emoji);
     onLastUsedEmojisChange();
 };
