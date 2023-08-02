@@ -1,6 +1,6 @@
 <template>
     <Transition>
-        <div v-show="show" class="min-w-full h-80">
+        <div v-show="show" class="min-w-full h-96">
             <div class="bg-primary-300 min-w-full h-full overflow-y-auto overflow-x-hidden relative">
                 <header ref="header" class="min-w-full flex border-b-[1px] border-gray-400">
                     <ul class="min-w-full grid grid-cols-5">
@@ -55,7 +55,6 @@ const appendEmoji = (emoji) => {
     props.onAppend(emoji.native);
     if (lastUsedEmojis.value.length >= 20) lastUsedEmojis.value.pop();
     if (!lastUsedEmojis.value.find(e => e.native === emoji.native)) lastUsedEmojis.value.unshift(emoji);
-    //lastUsedEmojis.value = lastUsedEmojis.value.filter(e => e.native !== emoji.native);
     onLastUsedEmojisChange();
 };
 

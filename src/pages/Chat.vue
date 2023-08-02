@@ -108,9 +108,7 @@ const showEmojiPicker = ref(false);
 const toogleShowEmojiPicker = (value) => {
     (typeof value == "boolean") ? showEmojiPicker.value = value : showEmojiPicker.value = !showEmojiPicker.value;
     if (!showEmojiPicker.value) msgField.value.focus();
-    setTimeout(() => {
-        msgsRef.value.scrollIntoView({ behavior: 'smooth' });
-    }, 150);
+    msgsRef.value.scrollIntoView();
 };
 
 const inputsData = ref({
@@ -150,7 +148,7 @@ const handelSend = () => {
     msgField.value.focus();
     setTimeout(() => {
         msgsRef.value.scrollIntoView({ behavior: 'smooth' });
-    }, 250);
+    }, 150);
 };
 
 const appendEmoji = (emoji) => {
