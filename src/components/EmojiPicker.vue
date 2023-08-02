@@ -27,7 +27,6 @@
                     </div>
                 </main>
 
-
             </div>
             <footer class=" sticky bottom-0 min-w-full bg-primary-100 p-2">
                 <div class="min-w-full flex flex-row justify-end items-center bg-primary-100">
