@@ -38,7 +38,6 @@ function emojiParser(str, alt = false) {
     const customEmojiRegex = /:(\w+):/g;
     let parsed = twemoji.parse(str);
     const matches = parsed.match(customEmojiRegex);
-    console.log(`<img class="emoji" draggable="false" alt="😂" src="https://twemoji.maxcdn.com/v/14.0.2/72x72/1f602.png"/>:duck:`.match(customEmojiRegex));
     if (Array.isArray(matches)) {
         for (const match of matches) {
             const emoji = allEmojis.find(e => e.emoji.trim() === match.trim());
