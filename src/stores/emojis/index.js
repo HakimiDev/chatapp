@@ -42,7 +42,11 @@ function emojiParser(str, alt = false) {
         if (Array.isArray(matches)) {
             for (const match of matches) {
                 const emoji = allEmojis.find(e => e.emoji.trim() === match.trim());
-                if (emoji && emoji.customImgLink) parsed = parsed.replaceAll(match, `<img class="emoji" draggable="false" 1691515245459="" src="${emoji.customImgLink}">`);
+                if (emoji && emoji.customImgLink) {
+                    const tag = (emoji.customImgLink.endsWith('.mp4')) ? `<video autoplay loop class="emoji" draggable="false" src="${emoji.customImgLink}">` : `<img class="emoji" draggable="false" src="${emoji.customImgLink}">`;
+                    parsed = parsed.replaceAll(match, tag);
+                    console.log(Math.random(), parsed);
+                }
             }
         }
     }
