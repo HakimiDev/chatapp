@@ -42,8 +42,8 @@
             <ul class="p-2 min-w-full min-h-full">
                 <Message v-for="(message, index) in displayMessages" :key="index" :messages="messages" :message="message"
                     :index="index" />
-                <div ref="msgsRef"></div>
             </ul>
+            <div ref="msgsRef"></div>
         </main>
 
         <footer class="min-w-full sticky bottom-0 z-10 bg-primary-300">
@@ -146,7 +146,9 @@ const handelSend = () => {
     });
     inputsData.value.message = '';
     msgField.value.focus();
-    msgsRef.value.scrollIntoView();
+    setTimeout(() => {
+        msgsRef.value.scrollIntoView();
+    }, 50);
 };
 
 const appendEmoji = (emoji) => {
