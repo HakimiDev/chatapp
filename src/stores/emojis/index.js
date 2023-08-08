@@ -28,17 +28,23 @@ function initEmojis() {
     }
 }
 
-function onLastUsedEmojisChange () {
+function onLastUsedEmojisChange() {
     emojis.value["lastUsed"].emojis = lastUsedEmojis.value;
     localStorage.setItem('lastUsedEmojis', JSON.stringify(lastUsedEmojis.value));
 }
 
 function emojiParser(str, alt = false) {
     const altRegex = /alt="([^"]*)"/g;
+    const customEmojiRegex = /:(.*?):/g;
     let parsed = twemoji.parse(str);
-    if (parsed == str) {
-        const emoji = allEmojis.find(e => e.emoji === str.trim());
-        if (emoji && emoji.customImgLink) parsed = parsed.replaceAll(str, `<img class="emoji" draggable="false" 1691515245459="" src="${emoji.customImgLink}">`);
+    if (parsed === str) {
+        const matches = str.match(customEmojiRegex);
+        if (Array.isArray(matches)) {
+            for (const match of matches) {
+                const emoji = allEmojis.find(e => e.emoji.trim() === match.trim());
+                if (emoji && emoji.customImgLink) parsed = parsed.replaceAll(match, `<img class="emoji" draggable="false" 1691515245459="" src="${emoji.customImgLink}">`);
+            }
+        }
     }
     return (alt) ? parsed : parsed.replace(altRegex, Date.now());
 }
