@@ -118,7 +118,7 @@ const inputsData = ref({
 
 onMounted(() => {
     if (!selectedUser.value) return window.location.hash = '#';
-    msgsRef.value.scrollIntoView({ behavior: 'smooth' });
+    msgsRef.value.scrollIntoView();
 });
 
 const user = ref(selectedUser.value || {});
@@ -146,9 +146,7 @@ const handelSend = () => {
     });
     inputsData.value.message = '';
     msgField.value.focus();
-    setTimeout(() => {
-        msgsRef.value.scrollIntoView({ behavior: 'smooth' });
-    }, 150);
+    msgsRef.value.scrollIntoView();
 };
 
 const appendEmoji = (emoji) => {
