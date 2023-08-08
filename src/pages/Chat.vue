@@ -5,7 +5,8 @@
             <div class="min-w-full bg-primary-100 flex flex-row items-center p-2 rounded-b">
                 <div>
                     <div class="flex flex-row items-center">
-                        <div @click="handelBack" class="me-2 cursor-pointer rounded-full p-1 transition duration-500 hover:bg-secondary-50">
+                        <div @click="handelBack"
+                            class="me-2 cursor-pointer rounded-full p-1 transition duration-500 hover:bg-secondary-50">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-7 h-7">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -72,7 +73,7 @@
 
                     <textarea @focus="toogleShowEmojiPicker(false)" ref="msgField" v-model="inputsData.message" cols="2"
                         rows="1" class="w-full bg-transparent outline-none p-2 resize-none" placeholder="Message"
-                        @keydown.enter="handelKeyDown" @keyup.enter="handelKeyUp"></textarea>
+                        @keydown.enter.prevent="handelKeyDown" @keyup.enter.prevent="handelKeyUp"></textarea>
                     <div class="cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50"
                         @click="handelSend">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -165,18 +166,19 @@ const removeEmoji = (emojiLength = 1) => {
 
 const handelKeyDown = (e) => {
     if (!e.shiftKey) return handelSend();
+    e.target.value += '\n';
 };
 
 const handelKeyUp = (e) => {
     if (e.shiftKey) return;
     inputsData.value.message = '';
-};
+}
 
 window.addEventListener('keydown', (e) => {
     if (e.key == "Enter" && showEmojiPicker.value) {
         handelSend();
     }
-})
+});
 
 const imageUrl = ref('');
 
