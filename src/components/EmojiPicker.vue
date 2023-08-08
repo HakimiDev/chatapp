@@ -77,7 +77,7 @@ onUpdated(() => {
 .v-enter-active,
 .v-leave-active {
     transition: ease;
-    transition-duration: 200ms;
+    transition-duration: 50ms;
     opacity: 1;
 }
 
