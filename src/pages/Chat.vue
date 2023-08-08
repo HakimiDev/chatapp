@@ -5,7 +5,7 @@
             <div class="min-w-full bg-primary-100 flex flex-row items-center p-2 rounded-b">
                 <div>
                     <div class="flex flex-row items-center">
-                        <div class="me-2 cursor-pointer rounded-full p-1 transition duration-500 hover:bg-secondary-50">
+                        <div @click="handelBack" class="me-2 cursor-pointer rounded-full p-1 transition duration-500 hover:bg-secondary-50">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-7 h-7">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -137,6 +137,10 @@ const displayMessages = computed(() => messages.value.map((e) => {
 
 const msgField = ref(null);
 const msgsRef = ref(null);
+
+const handelBack = () => {
+    window.location.hash = '#';
+};
 
 const handelSend = () => {
     if (!inputsData.value.message.trim().length) return;
