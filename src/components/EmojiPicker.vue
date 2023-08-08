@@ -77,15 +77,13 @@ onUpdated(() => {
 .v-enter-active,
 .v-leave-active {
     transition: ease;
-    transition-duration: 150ms;
+    transition-duration: 200ms;
     opacity: 1;
-    transform: scale(1);
 }
 
 .v-enter-from,
 .v-leave-to {
     opacity: 0;
-    transform: scale(0);
 }
 </style>
 
