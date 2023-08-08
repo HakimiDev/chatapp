@@ -35,21 +35,20 @@ function onLastUsedEmojisChange() {
 
 function emojiParser(str, alt = false) {
     const altRegex = /alt="([^"]*)"/g;
-    const customEmojiRegex = /:(.*?):/g;
+    const customEmojiRegex = /:(\w+):/g;
     let parsed = twemoji.parse(str);
-    if (parsed === str) {
-        const matches = str.match(customEmojiRegex);
-        if (Array.isArray(matches)) {
-            for (const match of matches) {
-                const emoji = allEmojis.find(e => e.emoji.trim() === match.trim());
-                if (emoji && emoji.customImgLink) {
-                    const tag = (emoji.customImgLink.endsWith('.mp4')) ? `<video autoplay loop class="emoji" draggable="false" src="${emoji.customImgLink}">` : `<img class="emoji" draggable="false" src="${emoji.customImgLink}">`;
-                    parsed = parsed.replaceAll(match, tag);
-                    console.log(Math.random(), parsed);
-                }
+    const matches = parsed.match(customEmojiRegex);
+    console.log(`<img class="emoji" draggable="false" alt="😂" src="https://twemoji.maxcdn.com/v/14.0.2/72x72/1f602.png"/>:duck:`.match(customEmojiRegex));
+    if (Array.isArray(matches)) {
+        for (const match of matches) {
+            const emoji = allEmojis.find(e => e.emoji.trim() === match.trim());
+            if (emoji && emoji.customImgLink) {
+                const tag = (emoji.customImgLink.endsWith('.mp4')) ? `<video autoplay loop class="emoji" draggable="false" src="${emoji.customImgLink}">` : `<img class="emoji" draggable="false" src="${emoji.customImgLink}">`;
+                parsed = parsed.replaceAll(match, tag);
             }
         }
     }
+    console.log(parsed);
     return (alt) ? parsed : parsed.replace(altRegex, Date.now());
 }
 
