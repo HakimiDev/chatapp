@@ -17133,5 +17133,15 @@
     "tags": [],
     "unicode_version": "11.0",
     "ios_version": "12.1"
+  },
+  {
+    "emoji": ":kordiflag:",
+    "customImgLink": "https://upload.wikimedia.org/wikipedia/commons/3/35/Flag_of_Kurdistan.svg",
+    "description": "flag: Wales",
+    "category": "Flags",
+    "aliases": ["wales"],
+    "tags": [],
+    "unicode_version": "11.0",
+    "ios_version": "12.1"
   }
 ]

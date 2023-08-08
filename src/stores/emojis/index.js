@@ -1,4 +1,4 @@
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import allEmojis from './emojis.json';
 
 const lastUsedEmojis = ref(JSON.parse(localStorage.getItem('lastUsedEmojis') || "[]"));
@@ -21,6 +21,7 @@ function initEmojis() {
             emojis: category.map(c => {
                 const native = c.emoji;
                 const custom = emojiParser(c.emoji, true);
+                const customImgLink = c.customImgLink;
                 return { native, custom };
             })
         };
@@ -30,12 +31,16 @@ function initEmojis() {
 function onLastUsedEmojisChange () {
     emojis.value["lastUsed"].emojis = lastUsedEmojis.value;
     localStorage.setItem('lastUsedEmojis', JSON.stringify(lastUsedEmojis.value));
-
 }
 
 function emojiParser(str, alt = false) {
     const altRegex = /alt="([^"]*)"/g;
-    return (alt) ? twemoji.parse(str) : twemoji.parse(str).replace(altRegex, Date.now());
+    let parsed = twemoji.parse(str);
+    if (parsed == str) {
+        const emoji = allEmojis.find(e => e.emoji === str.trim());
+        if (emoji && emoji.customImgLink) parsed = parsed.replaceAll(str, `<img class="emoji" draggable="false" 1691515245459="" src="${emoji.customImgLink}">`);
+    }
+    return (alt) ? parsed : parsed.replace(altRegex, Date.now());
 }
 
 export {
