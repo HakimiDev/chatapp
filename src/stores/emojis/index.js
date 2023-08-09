@@ -21,8 +21,10 @@ function initEmojis() {
             emojis: category.map(c => {
                 const native = c.emoji;
                 const custom = emojiParser(c.emoji, true);
-                const customImgLink = c.customImgLink;
-                return { native, custom };
+                const description = c.description || '';
+                const tags = c.tags || [];
+                const aliases = c.aliases || [];
+                return { native, custom, description, tags, aliases };
             })
         };
     }
@@ -47,7 +49,6 @@ function emojiParser(str, alt = false) {
             }
         }
     }
-    console.log(parsed);
     return (alt) ? parsed : parsed.replace(altRegex, Date.now());
 }
 

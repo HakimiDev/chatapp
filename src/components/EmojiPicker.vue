@@ -1,6 +1,6 @@
 <template>
     <Transition>
-        <div v-show="show" class="min-w-full h-80">
+        <div v-show="show" class="min-w-full h-56">
             <div class="bg-primary-300 min-w-full h-full overflow-y-auto overflow-x-hidden relative">
                 <header ref="header" class="min-w-full flex border-b-[1px] border-gray-400">
                     <ul class="min-w-full grid grid-cols-5">
@@ -13,9 +13,9 @@
                 </header>
 
                 <main>
-                    <div v-if="emojis[selectedCategory].emojis.length">
+                    <div v-if="showedCategoty.length">
                         <ul class="min-w-full grid grid-cols-8 max-xs:grid-cols-6 my-1">
-                            <li @click="appendEmoji(emoji)" v-for="(emoji, index) in emojis[selectedCategory].emojis"
+                            <li @click="appendEmoji(emoji)" v-for="(emoji, index) in showedCategoty"
                                 :key="index"
                                 class="text-3xl p-1 mx-1 flex justify-center items-center cursor-pointer rounded-full transition duration-500 hover:bg-secondary-50">
                                 <div class="flex justify-center items-center" v-html="emoji.custom"></div>
@@ -28,8 +28,19 @@
                 </main>
 
             </div>
-            <footer class=" sticky bottom-0 min-w-full bg-primary-100 p-2">
+            <footer class="sticky bottom-0 min-w-full bg-primary-100 p-2">
                 <div class="min-w-full flex flex-row justify-end items-center bg-primary-100">
+                    <InputField :modelValue="searchBar" :onChange="onChange" class="bg-transparent" placeholder="Search...">
+                        <template v-slot:before>
+                            <div class="me-2 pe-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                                </svg>
+                            </div>
+                        </template>
+                    </InputField>
                     <div @click="removeEmoji()"
                         class="cursor-pointer rounded-full p-2 transition duration-500 hover:bg-secondary-50">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -45,8 +56,10 @@
 </template>
 
 <script setup>
-import { onUpdated, ref } from 'vue';
+import { computed, onUpdated, ref } from 'vue';
 import { emojis, lastUsedEmojis, onLastUsedEmojisChange } from '../stores/emojis/index';
+
+import InputField from './InputField.vue';
 
 const props = defineProps(['show', 'onAppend', 'onRemove']);
 
@@ -61,10 +74,39 @@ const removeEmoji = (emojiLength = 1) => {
     props.onRemove(emojiLength);
 };
 
+const searchBar = ref('');
+
+const onChange = (name, value) => {
+    searchBar.value = value;
+}
+
 const selectedCategory = ref('Smileys & Emotion');
 const selectCategory = (category) => {
     selectedCategory.value = category;
 };
+
+const showedCategoty = computed(() => {
+    let showed = [];
+    if (searchBar.value.trim().length) {
+        for (const [key, value] of Object.entries(emojis.value)) {
+            const emos = value.emojis.filter(e => {
+                const onDescription = typeof e.description == "string" && e.description.startsWith(searchBar.value);
+                const onTags = Array.isArray(e.tags) && e.tags.includes(searchBar.value);
+                const onAliases = Array.isArray(e.aliases) && e.aliases.includes(searchBar.value);
+                return e.native.includes(searchBar.value) || onDescription || onTags || onAliases;
+            });
+            showed.push(...emos);
+            const uShowd = [];
+            showed.forEach(e => {
+                if (!uShowd.find(x => x.native === e.native)) uShowd.push(e);
+            });
+            showed = uShowd;
+        }
+    } else {
+        showed = emojis.value[selectedCategory.value].emojis;
+    }
+    return showed;
+});
 
 const header = ref(null);
 onUpdated(() => {
@@ -106,6 +148,7 @@ onUpdated(() => {
     display: inline-block;
     width: 40px;
     height: 100%;
-    padding: 2px;
+    padding: 1px;
+    border-radius: 7px;
 }
 </style>
