@@ -56,7 +56,7 @@
 </template>
 
 <script setup>
-import { computed, onUpdated, ref } from 'vue';
+import { computed, onUpdated, ref, watch } from 'vue';
 import { emojis, lastUsedEmojis, onLastUsedEmojisChange } from '../stores/emojis/index';
 
 import InputField from './InputField.vue';
@@ -106,6 +106,10 @@ const showedCategoty = computed(() => {
         showed = emojis.value[selectedCategory.value].emojis;
     }
     return showed;
+});
+
+watch(selectedCategory, () => {
+    searchBar.value = '';
 });
 
 const header = ref(null);
