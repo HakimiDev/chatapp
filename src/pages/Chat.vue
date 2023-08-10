@@ -1,7 +1,7 @@
 <template>
     <div class="min-w-full min-h-full">
         <MinMune type="2" :show="showMinMune" :toggleShow="toogleShowMinMune" />
-        <header class="min-w-full fixed top-0 flex items-center z-10">
+        <header class="min-w-full sticky top-0 flex items-center z-10">
             <div class="min-w-full bg-primary-100 flex flex-row items-center p-2 rounded-b">
                 <div>
                     <div class="flex flex-row items-center">
@@ -39,8 +39,8 @@
             </div>
         </header>
 
-        <main class="text-md overflow-y-scroll pt-16 min-h-screen">
-            <ul class="p-2 min-w-full min-h-full overflow-y-scroll">
+        <main class="text-md overflow-y-scroll h-screen">
+            <ul class="p-2 min-w-full min-h-full">
                 <Message v-for="(message, index) in displayMessages" :key="index" :messages="messages" :message="message"
                     :index="index" />
             </ul>

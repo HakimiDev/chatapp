@@ -1,21 +1,23 @@
 <template>
-    <Header />
-    <Fap />
-    <main class="mt-16">
-        <section>
-            <ul v-if="true" class="p-2">
+    <div class="min-w-full min-h-full">
+        <Header />
+        <Fap />
+        <main class="overflow-y-scroll h-screen">
+            <ul v-if="users.length" class="p-2 min-w-full min-h-full pb-12">
                 <UserCard v-for="(user, index) in users" :key="index" :user="user" />
+                <footer class="min-w-full p-10 text-gray-400 border-t-[1px]">
+                    <div class="text-md max-xs:text-xs">
+                        <h2 class="text-center">Your personal messages are <span
+                                class="text-secondary-100 cursor-pointer transition duration-300 hover:underline">end-to-end-encrypted</span>
+                        </h2>
+                    </div>
+                </footer>
             </ul>
             <div class="min-w-full flex justify-center items-center text-2xl font-semibold" v-else>
                 <p>You don't have freinds ):</p>
             </div>
-        </section>
-    </main>
-    <footer class="border-t-[1px] min-w-full sticky mt-1 p-4 pb-24 text-gray-400">
-        <div class="text-md max-xs:text-xs">
-            <h2 class="text-center">Your personal messages are <span class="text-secondary-100 cursor-pointer transition duration-300 hover:underline">end-to-end-encrypted</span></h2>
-        </div>
-    </footer>
+        </main>
+    </div>
 </template>
 
 <script setup>

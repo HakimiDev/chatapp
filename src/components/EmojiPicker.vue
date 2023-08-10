@@ -1,6 +1,6 @@
 <template>
     <Transition>
-        <div v-show="show" class="min-w-full h-60">
+        <div v-show="show" class="min-w-full h-60 overflow-hidden">
             <div class="bg-primary-300 min-w-full h-full overflow-y-auto overflow-x-hidden relative">
                 <header ref="header" class="min-w-full flex flex-col border-b-[1px] border-gray-400 p-1">
                     <ul class="min-w-full grid grid-cols-11 max-xs:grid-cols-6 gap-2 px-1">
@@ -11,10 +11,10 @@
                             <h2 v-else>{{ emojis[category].icon }}</h2>
                         </li>
                     </ul>
-                    <h3 class="ms-2">{{ selectedCategory }}</h3>
+                    <h3 class="ms-2 mt-2">{{ selectedCategory }}</h3>
                 </header>
 
-                <main>
+                <main class="overflow-y-scroll pb-14">
                     <div v-if="showedCategoty.length">
                         <ul class="min-w-full grid grid-cols-8 max-xs:grid-cols-6 my-1">
                             <li @click="appendEmoji(emoji)" v-for="(emoji, index) in showedCategoty"
@@ -136,20 +136,6 @@ onUpdated(() => {
 </style>
 
 <style>
-::-webkit-scrollbar {
-    width: 0.1rem;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    border-radius: 0.25rem;
-}
-
-::-webkit-scrollbar-track {
-    background-color: transparent;
-    border-radius: 0.25rem;
-}
-
 .emoji {
     display: inline-block;
     width: 35px;

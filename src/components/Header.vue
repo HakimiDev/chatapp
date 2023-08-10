@@ -1,6 +1,6 @@
 <template>
     <MinMune type="1" :show="showMinMune" :toggleShow="toogleShowMinMune" />
-    <header class="w-full fixed top-0 flex items-center z-20">
+    <header class="w-full sticky top-0 flex items-center z-20">
         <div class="min-w-full bg-primary-100 flex justify-between items-center p-4 rounded-b">
             <div class="text-xl max-xs:text-lg font-bold">
                 <h2>Hush<span class=" text-orange-400">Chat</span></h2>

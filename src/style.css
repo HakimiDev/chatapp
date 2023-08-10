@@ -8,12 +8,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    border-radius: 0.25rem;
+    background-color: gray;
+    border-radius: 0.50rem;
 }
 
 ::-webkit-scrollbar-track {
     background-color: transparent;
     border-radius: 0.25rem;
 }
-
