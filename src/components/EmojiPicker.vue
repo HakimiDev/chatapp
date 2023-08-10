@@ -90,9 +90,9 @@ const showedCategoty = computed(() => {
     if (searchBar.value.trim().length) {
         for (const [key, value] of Object.entries(emojis.value)) {
             const emos = value.emojis.filter(e => {
-                const onDescription = typeof e.description == "string" && e.description.startsWith(searchBar.value.toLowerCase());
-                const onTags = Array.isArray(e.tags) && e.tags.includes(searchBar.value);
-                const onAliases = Array.isArray(e.aliases) && e.aliases.includes(searchBar.value);
+                const onDescription = typeof e.description == "string" && e.description.startsWith(searchBar.value.toLowerCase().trim());
+                const onTags = Array.isArray(e.tags) && e.tags.includes(searchBar.value.toLowerCase().trim());
+                const onAliases = Array.isArray(e.aliases) && e.aliases.includes(searchBar.value.toLowerCase().trim());
                 return e.native.includes(searchBar.value.toLowerCase().trim()) || onDescription || onTags || onAliases;
             });
             showed.push(...emos);
