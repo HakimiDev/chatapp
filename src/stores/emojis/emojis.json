@@ -5919,24 +5919,6 @@
     "ios_version": "6.0"
   },
   {
-    "emoji": "🪸",
-    "description": "coral",
-    "category": "Animals & Nature",
-    "aliases": ["coral"],
-    "tags": [],
-    "unicode_version": "14.0",
-    "ios_version": "15.4"
-  },
-  {
-    "emoji": "🪼",
-    "description": "jellyfish",
-    "category": "Animals & Nature",
-    "aliases": ["jellyfish"],
-    "tags": [],
-    "unicode_version": "15.0",
-    "ios_version": "16.4"
-  },
-  {
     "emoji": "🐌",
     "description": "snail",
     "category": "Animals & Nature",
