@@ -1,8 +1,8 @@
 <template>
     <Transition>
-        <div v-show="show" class="min-w-full h-56">
+        <div v-show="show" class="min-w-full h-60">
             <div class="bg-primary-300 min-w-full h-full overflow-y-auto overflow-x-hidden relative">
-                <header ref="header" class="min-w-full flex border-b-[1px] border-gray-400">
+                <header ref="header" class="min-w-full flex border-b-[1px] border-gray-400 p-1">
                     <ul class="min-w-full grid grid-cols-5">
                         <li v-for="(category, index) in Object.keys(emojis)" :key="index" @click="selectCategory(category)"
                             :class="selectedCategory === category ? ' bg-primary-200' : 'bg-secondary-50 hover:bg-primary-200'"

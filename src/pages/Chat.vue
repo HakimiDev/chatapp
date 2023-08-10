@@ -40,7 +40,7 @@
         </header>
 
         <main class="text-md overflow-y-scroll pt-16 min-h-screen">
-            <ul class="p-2 min-w-full min-h-full">
+            <ul class="p-2 min-w-full min-h-full overflow-y-scroll">
                 <Message v-for="(message, index) in displayMessages" :key="index" :messages="messages" :message="message"
                     :index="index" />
             </ul>
