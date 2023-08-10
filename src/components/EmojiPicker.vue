@@ -2,14 +2,16 @@
     <Transition>
         <div v-show="show" class="min-w-full h-60">
             <div class="bg-primary-300 min-w-full h-full overflow-y-auto overflow-x-hidden relative">
-                <header ref="header" class="min-w-full flex border-b-[1px] border-gray-400 p-1">
-                    <ul class="min-w-full grid grid-cols-5">
+                <header ref="header" class="min-w-full flex flex-col border-b-[1px] border-gray-400 p-1">
+                    <ul class="min-w-full grid grid-cols-11 max-xs:grid-cols-6">
                         <li v-for="(category, index) in Object.keys(emojis)" :key="index" @click="selectCategory(category)"
                             :class="selectedCategory === category ? ' bg-primary-200' : 'bg-secondary-50 hover:bg-primary-200'"
-                            class="text-lg p-1 px-5 m-1 me-2 flex justify-center items-center cursor-pointer rounded-full transition duration-500">
-                            <h2>{{ emojis[category].icon }}</h2>
+                            class="text-lg p-[2px] m-1 me-2 flex justify-center items-center cursor-pointer rounded-full transition duration-500">
+                            <h2 v-if="index !== 0" class="flex justify-center items-center" v-html="emojis[category].emojis[0].custom"></h2>
+                            <h2 v-else>{{ emojis[category].icon }}</h2>
                         </li>
                     </ul>
+                    <h3 class="ms-2">{{ selectedCategory }}</h3>
                 </header>
 
                 <main>
@@ -150,9 +152,9 @@ onUpdated(() => {
 
 .emoji {
     display: inline-block;
-    width: 40px;
+    width: 35px;
     height: 100%;
-    padding: 1px;
+    padding: 2px;
     border-radius: 7px;
 }
 </style>

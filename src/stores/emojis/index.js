@@ -1,14 +1,52 @@
 import { ref } from 'vue';
 import allEmojis from './emojis.json';
 
+const StyleType = 'messenger-128';
+const apiLink = `https://emoji.aranja.com/static/emoji-data/img-${StyleType}/`;
+
 const lastUsedEmojis = ref(JSON.parse(localStorage.getItem('lastUsedEmojis') || "[]"));
 
 const emojis = ref({
-    lastUsed: {
+    'Last Used': {
         icon: '🕑',
         emojis: lastUsedEmojis.value
     }
 });
+const customEmojis = [
+    {
+        "emoji": ":duck:",
+        "customImgLink": "https://i.gifer.com/XOsX.gif",
+        "description": "duck face",
+        "category": "Custom",
+        "aliases": ["grinning"],
+        "tags": ["smile", "happy"],
+        "unicode_version": "6.1",
+        "ios_version": "6.0"
+    },
+    {
+        "emoji": ":naruto:",
+        "customImgLink": "https://i.gifer.com/Wkoe.gif",
+        "description": "naruto face",
+        "category": "Custom",
+        "aliases": ["grinning"],
+        "tags": ["smile", "happy"],
+        "unicode_version": "6.1",
+        "ios_version": "6.0"
+    },
+    {
+        "emoji": ":kurdistan_flag:",
+        "customImgLink": "https://upload.wikimedia.org/wikipedia/commons/3/35/Flag_of_Kurdistan.svg",
+        "description": "flag: Wales",
+        "category": "Flags",
+        "aliases": ["wales"],
+        "tags": [],
+        "unicode_version": "11.0",
+        "ios_version": "12.1"
+    }
+];
+
+allEmojis.push(...customEmojis);
+
 initEmojis();
 
 function initEmojis() {
@@ -17,7 +55,7 @@ function initEmojis() {
         const category = allEmojis.filter(e => e.category === emoji.category);
         if (!category.length) continue;
         emojis.value[category[0].category] = {
-            icon: category[4].emoji,
+            icon: category[0].emoji,
             emojis: category.map(c => {
                 const native = c.emoji;
                 const custom = emojiParser(c.emoji, true);
@@ -31,9 +69,22 @@ function initEmojis() {
 }
 
 function onLastUsedEmojisChange() {
-    emojis.value["lastUsed"].emojis = lastUsedEmojis.value;
+    emojis.value["Last Used"].emojis = lastUsedEmojis.value;
     localStorage.setItem('lastUsedEmojis', JSON.stringify(lastUsedEmojis.value));
 }
+
+// async function parse (str) {
+//     for (const emoji of allEmojis) {
+//         const emojiImgLink = await fetch(`${apiLink}${twemoji.convert.toCodePoint(emoji)}.png`);
+//         console.log(emojiImgLink);
+//         str = str.replaceAll(emoji.emoji, `<img class="emoji" draggable="false" src="${emoji.customImgLink}">`);
+//     }
+//     return str;
+// }
+
+// async function run () {
+//     console.log(await parse('2764-fe0f'));
+// }
 
 function emojiParser(str, alt = false) {
     const altRegex = /alt="([^"]*)"/g;

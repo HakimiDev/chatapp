@@ -1,25 +1,5 @@
 [
   {
-    "emoji": ":duck:",
-    "customImgLink": "https://i.gifer.com/XOsX.gif",
-    "description": "duck face",
-    "category": "Smileys & Emotion",
-    "aliases": ["grinning"],
-    "tags": ["smile", "happy"],
-    "unicode_version": "6.1",
-    "ios_version": "6.0"
-  },
-  {
-    "emoji": ":naruto:",
-    "customImgLink": "https://i.gifer.com/Wkoe.gif",
-    "description": "naruto face",
-    "category": "Smileys & Emotion",
-    "aliases": ["grinning"],
-    "tags": ["smile", "happy"],
-    "unicode_version": "6.1",
-    "ios_version": "6.0"
-  },
-  {
     "emoji": "😀",
     "description": "grinning face",
     "category": "Smileys & Emotion",
@@ -459,15 +439,6 @@
     "tags": ["liar"],
     "unicode_version": "9.0",
     "ios_version": "10.2"
-  },
-  {
-    "emoji": "🫨",
-    "description": "shaking face",
-    "category": "Smileys & Emotion",
-    "aliases": ["shaking_face"],
-    "tags": ["shock"],
-    "unicode_version": "15.0",
-    "ios_version": "16.4"
   },
   {
     "emoji": "😌",
@@ -1289,15 +1260,6 @@
     "ios_version": "6.0"
   },
   {
-    "emoji": "🩷",
-    "description": "pink heart",
-    "category": "Smileys & Emotion",
-    "aliases": ["pink_heart"],
-    "tags": [],
-    "unicode_version": "15.0",
-    "ios_version": "16.4"
-  },
-  {
     "emoji": "🧡",
     "description": "orange heart",
     "category": "Smileys & Emotion",
@@ -1334,15 +1296,6 @@
     "ios_version": "6.0"
   },
   {
-    "emoji": "🩵",
-    "description": "light blue heart",
-    "category": "Smileys & Emotion",
-    "aliases": ["light_blue_heart"],
-    "tags": [],
-    "unicode_version": "15.0",
-    "ios_version": "16.4"
-  },
-  {
     "emoji": "💜",
     "description": "purple heart",
     "category": "Smileys & Emotion",
@@ -1368,15 +1321,6 @@
     "tags": [],
     "unicode_version": "9.0",
     "ios_version": "10.2"
-  },
-  {
-    "emoji": "🩶",
-    "description": "grey heart",
-    "category": "Smileys & Emotion",
-    "aliases": ["grey_heart"],
-    "tags": [],
-    "unicode_version": "15.0",
-    "ios_version": "16.4"
   },
   {
     "emoji": "🤍",
@@ -1467,15 +1411,6 @@
     "tags": ["comment"],
     "unicode_version": "6.0",
     "ios_version": "6.0"
-  },
-  {
-    "emoji": "👁️‍🗨️",
-    "description": "eye in speech bubble",
-    "category": "Smileys & Emotion",
-    "aliases": ["eye_speech_bubble"],
-    "tags": [],
-    "unicode_version": "11.0",
-    "ios_version": "12.1"
   },
   {
     "emoji": "🗨️",
@@ -1601,26 +1536,6 @@
     "tags": [],
     "unicode_version": "14.0",
     "ios_version": "15.4",
-    "skin_tones": true
-  },
-  {
-    "emoji": "🫷",
-    "description": "leftwards pushing hand",
-    "category": "People & Body",
-    "aliases": ["leftwards_pushing_hand"],
-    "tags": [],
-    "unicode_version": "15.0",
-    "ios_version": "16.4",
-    "skin_tones": true
-  },
-  {
-    "emoji": "🫸",
-    "description": "rightwards pushing hand",
-    "category": "People & Body",
-    "aliases": ["rightwards_pushing_hand"],
-    "tags": [],
-    "unicode_version": "15.0",
-    "ios_version": "16.4",
     "skin_tones": true
   },
   {
@@ -5266,24 +5181,6 @@
     "ios_version": "6.0"
   },
   {
-    "emoji": "🫎",
-    "description": "moose",
-    "category": "Animals & Nature",
-    "aliases": ["moose"],
-    "tags": ["canada"],
-    "unicode_version": "15.0",
-    "ios_version": "16.4"
-  },
-  {
-    "emoji": "🫏",
-    "description": "donkey",
-    "category": "Animals & Nature",
-    "aliases": ["donkey"],
-    "tags": ["mule"],
-    "unicode_version": "15.0",
-    "ios_version": "16.4"
-  },
-  {
     "emoji": "🐎",
     "description": "horse",
     "category": "Animals & Nature",
@@ -5842,29 +5739,11 @@
     "ios_version": "12.1"
   },
   {
-    "emoji": "🪽",
-    "description": "wing",
-    "category": "Animals & Nature",
-    "aliases": ["wing"],
-    "tags": ["fly"],
-    "unicode_version": "15.0",
-    "ios_version": "16.4"
-  },
-  {
-    "emoji": "🐦‍⬛",
+    "emoji": "🐦",
     "description": "black bird",
     "category": "Animals & Nature",
     "aliases": ["black_bird"],
     "tags": [],
-    "unicode_version": "15.0",
-    "ios_version": "16.4"
-  },
-  {
-    "emoji": "🪿",
-    "description": "goose",
-    "category": "Animals & Nature",
-    "aliases": ["goose"],
-    "tags": ["honk"],
     "unicode_version": "15.0",
     "ios_version": "16.4"
   },
@@ -6299,15 +6178,6 @@
     "tags": ["flower"],
     "unicode_version": "6.0",
     "ios_version": "6.0"
-  },
-  {
-    "emoji": "🪻",
-    "description": "hyacinth",
-    "category": "Animals & Nature",
-    "aliases": ["hyacinth"],
-    "tags": [],
-    "unicode_version": "15.0",
-    "ios_version": "16.4"
   },
   {
     "emoji": "🌱",
@@ -6758,24 +6628,6 @@
     "tags": [],
     "unicode_version": "6.0",
     "ios_version": "6.0"
-  },
-  {
-    "emoji": "🫚",
-    "description": "ginger root",
-    "category": "Food & Drink",
-    "aliases": ["ginger_root"],
-    "tags": [],
-    "unicode_version": "15.0",
-    "ios_version": "16.4"
-  },
-  {
-    "emoji": "🫛",
-    "description": "pea pod",
-    "category": "Food & Drink",
-    "aliases": ["pea_pod"],
-    "tags": [],
-    "unicode_version": "15.0",
-    "ios_version": "16.4"
   },
   {
     "emoji": "🍞",
@@ -10558,15 +10410,6 @@
     "ios_version": "6.0"
   },
   {
-    "emoji": "🪭",
-    "description": "folding hand fan",
-    "category": "Objects",
-    "aliases": ["folding_hand_fan"],
-    "tags": ["sensu"],
-    "unicode_version": "15.0",
-    "ios_version": "16.4"
-  },
-  {
     "emoji": "👛",
     "description": "purse",
     "category": "Objects",
@@ -10610,15 +10453,6 @@
     "tags": [],
     "unicode_version": "6.0",
     "ios_version": "6.0"
-  },
-  {
-    "emoji": "🩴",
-    "description": "thong sandal",
-    "category": "Objects",
-    "aliases": ["thong_sandal"],
-    "tags": [],
-    "unicode_version": "13.0",
-    "ios_version": "14.0"
   },
   {
     "emoji": "👞",
@@ -10691,15 +10525,6 @@
     "tags": [],
     "unicode_version": "6.0",
     "ios_version": "6.0"
-  },
-  {
-    "emoji": "🪮",
-    "description": "hair pick",
-    "category": "Objects",
-    "aliases": ["hair_pick"],
-    "tags": [],
-    "unicode_version": "15.0",
-    "ios_version": "16.4"
   },
   {
     "emoji": "👑",
@@ -11042,24 +10867,6 @@
     "tags": [],
     "unicode_version": "13.0",
     "ios_version": "14.0"
-  },
-  {
-    "emoji": "🪇",
-    "description": "maracas",
-    "category": "Objects",
-    "aliases": ["maracas"],
-    "tags": ["shaker"],
-    "unicode_version": "15.0",
-    "ios_version": "16.4"
-  },
-  {
-    "emoji": "🪈",
-    "description": "flute",
-    "category": "Objects",
-    "aliases": ["flute"],
-    "tags": ["recorder"],
-    "unicode_version": "15.0",
-    "ios_version": "16.4"
   },
   {
     "emoji": "📱",
@@ -13256,15 +13063,6 @@
     "tags": [],
     "unicode_version": "6.0",
     "ios_version": "6.0"
-  },
-  {
-    "emoji": "🪯",
-    "description": "khanda",
-    "category": "Symbols",
-    "aliases": ["khanda"],
-    "tags": [],
-    "unicode_version": "15.0",
-    "ios_version": "16.4"
   },
   {
     "emoji": "♈",
@@ -17147,16 +16945,6 @@
   },
   {
     "emoji": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
-    "description": "flag: Wales",
-    "category": "Flags",
-    "aliases": ["wales"],
-    "tags": [],
-    "unicode_version": "11.0",
-    "ios_version": "12.1"
-  },
-  {
-    "emoji": ":kurdistan_flag:",
-    "customImgLink": "https://upload.wikimedia.org/wikipedia/commons/3/35/Flag_of_Kurdistan.svg",
     "description": "flag: Wales",
     "category": "Flags",
     "aliases": ["wales"],
