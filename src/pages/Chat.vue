@@ -39,8 +39,8 @@
             </div>
         </header>
 
-        <main :class="showEmojiPicker ? 'pb-60' : ''" class="text-md ">
-            <ul class="p-2 min-w-full max-h-full overflow-y-scroll">
+        <main :class="showEmojiPicker ? 'pb-60' : ''" class="text-md h-screen">
+            <ul class="p-2 min-w-full h-full overflow-y-scroll">
                 <Message v-for="(message, index) in displayMessages" :key="index" :messages="messages" :message="message"
                     :index="index" />
             </ul>
